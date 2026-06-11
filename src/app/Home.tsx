@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import StreakCard from '../components/StreakCard'
+import TodaysGoal from '../components/TodaysGoal'
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
         <Text style={styles.todaysSummaryText}>Today's Summary</Text>
       </View>
       <StreakCard/>
+      <TodaysGoal/>
     </SafeAreaView>
   )
 }
