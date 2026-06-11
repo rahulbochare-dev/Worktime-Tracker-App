@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native'
+import Button from '../components/Button'
 
 const OngoingSession = () => {
   return (
@@ -7,7 +8,7 @@ const OngoingSession = () => {
         <Text style={styles.ongoingSessionText}>OngoingSession</Text>
       </View>
       <Text style={styles.noOngoingSessionText}>No Ongoing Sessions</Text>
-      
+      <Button title={"Start new Session"} primary={true} width={214} disabled={false}/>
     </View>
   )
 }
@@ -39,6 +40,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: "GeistMedium",
     color: "#828282",
-    marginTop: 24
+    marginTop: 24,
+    marginBottom: 22
   },
 })
