@@ -15,7 +15,13 @@ const StreakCard = () => {
                 </View>
             </View>
             <View style={styles.streakCardDaysContainer}>
-                <StreakDay/>
+                <StreakDay day={"Mon"} isActive={true}/>
+                <StreakDay day={"Tue"} isActive={true}/>
+                <StreakDay day={"Wed"} isActive={true}/>
+                <StreakDay day={"Thu"} isActive={true}/>
+                <StreakDay day={"Fri"} isActive={true}/>
+                <StreakDay day={"Sat"} isActive={true}/>
+                <StreakDay day={"Sun"} isActive={false}/>
             </View>
         </View>
     )
@@ -62,8 +68,10 @@ const styles = StyleSheet.create({
         borderBottomColor: "#464646",
     },
     streakCardDaysContainer: {
-        height: 58,
+        height: 60,
         width: "100%",
-        backgroundColor: "red"
+        flexDirection: "row",
+        alignItems: "flex-end",
+        justifyContent: "space-between"
     },
 })

@@ -5,7 +5,7 @@ const StreakDay = ({day, isActive}) => {
   return (
     <View style={styles.container}>
       <View style={isActive? styles.iconContainerActive : styles.iconContainerInactive}>
-        <Lucide size={24} name='check'/>
+        <Lucide size={24} name='check' color={isActive? "black" : "white"}/>
       </View>
       <View style={styles.textContainer}>
         <Text style={styles.dayText}>{day || "N/A"}</Text>
@@ -20,10 +20,13 @@ const styles = StyleSheet.create({
   container: {
     width: 32,
     height: 48,
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 3
   },
   iconContainerActive: {
-    width: 32,
-    height: "65%",
+    width: 27,
+    height: "56%",
     backgroundColor: "yellow",
     borderRadius: 100,
     justifyContent: "center",
@@ -44,7 +47,7 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   dayText: {
-    fontSize: 12,
+    fontSize: 11,
     fontWeight: "100",
     color: "white"
   }
