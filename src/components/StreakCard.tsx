@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
+import StreakDay from '../components/StreakDay'
 
 const StreakCard = () => {
     return (
@@ -14,7 +15,7 @@ const StreakCard = () => {
                 </View>
             </View>
             <View style={styles.streakCardDaysContainer}>
-                
+                <StreakDay/>
             </View>
         </View>
     )
