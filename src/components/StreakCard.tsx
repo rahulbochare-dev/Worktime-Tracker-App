@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         marginTop: 14,
         borderRadius: 16,
         alignSelf: "center",
-        paddingHorizontal: 18
+        paddingHorizontal: 18,
     },
     streakFlex: {
         flexDirection: "row"
@@ -49,15 +49,18 @@ const styles = StyleSheet.create({
     },
     currentStreakText: {
         fontSize: 16,
+        fontFamily: "GeistMedium",
         color: "white",
         marginTop: 8
     },
     currentStreakNumberText: {
         fontSize: 42,
+        fontFamily: "GeistMedium",
         color: "white",
     },
     currentStreakNumberDaysText: {
         fontSize: 16,
+        fontFamily: "GeistMedium",
         color: "white",
     },
     streakCardIconContainer: {

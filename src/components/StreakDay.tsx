@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
   },
   dayText: {
     fontSize: 11,
+    fontFamily: "GeistLight",
     fontWeight: "100",
     color: "white"
   }

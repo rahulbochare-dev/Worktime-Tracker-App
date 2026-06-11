@@ -50,16 +50,18 @@ const styles = StyleSheet.create({
   },
   todaysGoalText: {
     fontSize: 16,
-    fontFamily: "GeistRegular",
+    fontFamily: "GeistMedium",
     color: "white",
     marginTop: 8
   },
   goalNumberText: {
     fontSize: 42,
+    fontFamily: "GeistMedium",
     color: "white",
   },
   goalNumberDaysText: {
     fontSize: 16,
+    fontFamily: "GeistMedium",
     color: "white",
   },
   goalProgressContainer: {
@@ -77,6 +79,7 @@ const styles = StyleSheet.create({
   },
   progressLabel: {
     fontSize: 12,
+    fontFamily: "GeistRegular",
     color: 'white',
   },
   progressTrack: {
@@ -101,6 +104,7 @@ const styles = StyleSheet.create({
   },
   tipText: {
     fontSize: 12,
+    fontFamily: "GeistRegular",
     color: "white"
   }
 })

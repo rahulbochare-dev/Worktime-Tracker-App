@@ -26,7 +26,8 @@ export default function RootLayout() {
     },
     headerShown: false,
     tabBarLabelStyle: {
-      fontSize: 12
+      fontSize: 12,
+      fontFamily: "GeistMedium",
     }
   }}
   >

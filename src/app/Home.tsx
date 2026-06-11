@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
   },
   welcomeText: {
     fontSize: 26,
+    fontFamily: "GeistMedium",
     color: "white"
   },
   welcomeTextGrey: {
@@ -42,6 +43,7 @@ const styles = StyleSheet.create({
   },
   todaysSummaryText: {
     fontSize: 20,
+    fontFamily: "GeistMedium",
     fontWeight: "100",
     color: "white",
     marginTop: 8
