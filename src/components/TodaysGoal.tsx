@@ -15,7 +15,9 @@ const TodaysGoal = ({progress = 78}: props) => {
       <View style={styles.goalProgressContainer}>
         <View style={styles.progressLabelRow}>
           <Text style={styles.progressLabel}>0</Text>
+          <Text style={styles.progressLabel}>25</Text>
           <Text style={styles.progressLabel}>50</Text>
+          <Text style={styles.progressLabel}>75</Text>
           <Text style={styles.progressLabel}>100</Text>
         </View>
         <View style={styles.progressTrack}>
@@ -55,7 +57,8 @@ const styles = StyleSheet.create({
     marginTop: 8
   },
   goalNumberText: {
-    fontSize: 42,
+    fontSize: 36,
+    marginTop: 4,
     fontFamily: "GeistMedium",
     color: "white",
   },

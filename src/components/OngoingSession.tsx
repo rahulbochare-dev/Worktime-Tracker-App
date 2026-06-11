@@ -18,7 +18,7 @@ export default OngoingSession
 const styles = StyleSheet.create({
   ongoinSessionContainer: {
     width: "100%",
-    minHeight: 170,
+    minHeight: 160,
     backgroundColor: "#1F1F29",
     marginTop: 14,
     borderRadius: 16,
@@ -41,6 +41,6 @@ const styles = StyleSheet.create({
     fontFamily: "GeistMedium",
     color: "#828282",
     marginTop: 24,
-    marginBottom: 22
+    marginBottom: 16
   },
 })

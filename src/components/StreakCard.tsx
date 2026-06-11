@@ -31,7 +31,7 @@ export default StreakCard
 const styles = StyleSheet.create({
     streakCardContainer: {
         width: "100%",
-        minHeight: 170,
+        minHeight: 160,
         backgroundColor: "#1F1F29",
         marginTop: 14,
         borderRadius: 16,
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         flexDirection: "row"
     },
     streakCardNumberContainer: {
-        height: 100,
+        height: 95,
         width: "70%",
         borderBottomWidth: 0.3,
         borderBottomColor: "#464646"
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
         marginTop: 8
     },
     currentStreakNumberText: {
-        fontSize: 42,
+        fontSize: 36,
         fontFamily: "GeistMedium",
         color: "white",
     },
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
         color: "white",
     },
     streakCardIconContainer: {
-        height: 100,
+        height: 95,
         width: "30%",
         borderBottomWidth: 0.3,
         borderBottomColor: "#464646",
@@ -73,7 +73,8 @@ const styles = StyleSheet.create({
         height: 60,
         width: "100%",
         flexDirection: "row",
-        alignItems: "flex-end",
+        alignItems: "flex-start",
+        paddingTop: 8,
         justifyContent: "space-between"
     },
 })
