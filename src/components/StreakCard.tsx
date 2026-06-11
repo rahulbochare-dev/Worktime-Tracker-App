@@ -1,15 +1,20 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, Image } from 'react-native'
 
 const StreakCard = () => {
     return (
         <View style={styles.streakCardContainer}>
-            <View style={styles.streakCardNumberContainer}>
-                <Text style={styles.currentStreakText}>Current Streak</Text>
-                <Text style={styles.currentStreakNumberText}>23 <Text style={styles.currentStreakNumberDaysText}>Days</Text></Text>
+            <View style={styles.streakFlex}>
+                <View style={styles.streakCardNumberContainer}>
+                    <Text style={styles.currentStreakText}>Current Streak</Text>
+                    <Text style={styles.currentStreakNumberText}>23 <Text style={styles.currentStreakNumberDaysText}>Days</Text></Text>
+                
+                </View>
+                <View style={styles.streakCardIconContainer}>
+                    <Image width={34} src='assets/burn.png'/>
+                </View>
             </View>
-            <View style={styles.streakCardIconContainer}>
-
+            <View style={styles.streakCardDaysContainer}>
+                
             </View>
         </View>
     )
@@ -25,8 +30,10 @@ const styles = StyleSheet.create({
         marginTop: 14,
         borderRadius: 16,
         alignSelf: "center",
-        flexDirection: "row",
         paddingHorizontal: 18
+    },
+    streakFlex: {
+        flexDirection: "row"
     },
     streakCardNumberContainer: {
         height: 104,
@@ -51,6 +58,11 @@ const styles = StyleSheet.create({
         height: 104,
         width: "30%",
         borderBottomWidth: 0.3,
-        borderBottomColor: "#464646"
+        borderBottomColor: "#464646",
+    },
+    streakCardDaysContainer: {
+        height: 58,
+        width: "100%",
+        backgroundColor: "red"
     },
 })
