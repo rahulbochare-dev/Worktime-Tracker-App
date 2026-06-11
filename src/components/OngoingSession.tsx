@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: "GeistMedium",
     color: "#828282",
-    marginTop: 24,
+    marginTop: 18,
     marginBottom: 16
   },
 })
