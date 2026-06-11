@@ -8,10 +8,9 @@ const StreakCard = () => {
                 <View style={styles.streakCardNumberContainer}>
                     <Text style={styles.currentStreakText}>Current Streak</Text>
                     <Text style={styles.currentStreakNumberText}>23 <Text style={styles.currentStreakNumberDaysText}>Days</Text></Text>
-                
                 </View>
                 <View style={styles.streakCardIconContainer}>
-                    <Image width={34} src='assets/burn.png'/>
+                    <Image width={34} src='src/assets/burn.png'/>
                 </View>
             </View>
             <View style={styles.streakCardDaysContainer}>
@@ -43,7 +42,7 @@ const styles = StyleSheet.create({
         flexDirection: "row"
     },
     streakCardNumberContainer: {
-        height: 104,
+        height: 100,
         width: "70%",
         borderBottomWidth: 0.3,
         borderBottomColor: "#464646"
@@ -54,7 +53,7 @@ const styles = StyleSheet.create({
         marginTop: 8
     },
     currentStreakNumberText: {
-        fontSize: 44,
+        fontSize: 42,
         color: "white",
     },
     currentStreakNumberDaysText: {
@@ -62,7 +61,7 @@ const styles = StyleSheet.create({
         color: "white",
     },
     streakCardIconContainer: {
-        height: 104,
+        height: 100,
         width: "30%",
         borderBottomWidth: 0.3,
         borderBottomColor: "#464646",

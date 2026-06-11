@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.welcomeTextContainer}>
-        <Text style={styles.welcomeText}>Good Evening, User</Text>
+        <Text style={styles.welcomeText}><Text style={styles.welcomeTextGrey}>Good Evening,</Text> User</Text>
       </View>
       <View>
         <Text style={styles.todaysSummaryText}>Today's Summary</Text>
@@ -26,17 +26,21 @@ const styles = StyleSheet.create({
   },
   welcomeTextContainer: {
     width: "auto",
-    height: 54,
-    marginTop: 8,
+    height: 48,
     borderBottomWidth: 0.3,
     borderBottomColor: "#464646"
   },
   welcomeText: {
-    fontSize: 28,
+    fontSize: 26,
     color: "white"
+  },
+  welcomeTextGrey: {
+    fontSize: 26,
+    color: "#828282"
   },
   todaysSummaryText: {
     fontSize: 20,
+    fontWeight: "100",
     color: "white",
     marginTop: 8
   },

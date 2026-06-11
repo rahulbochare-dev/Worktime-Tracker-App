@@ -1,11 +1,16 @@
 import { StyleSheet, Text, View } from 'react-native'
 import Lucide from '@react-native-vector-icons/lucide'
 
-const StreakDay = ({day, isActive}) => {
+type props = {
+  day: String,
+  isActive: Boolean
+}
+
+const StreakDay = ({day, isActive}: props) => {
   return (
     <View style={styles.container}>
       <View style={isActive? styles.iconContainerActive : styles.iconContainerInactive}>
-        <Lucide size={24} name='check' color={isActive? "black" : "white"}/>
+        <Lucide size={20} name='check' color={isActive? "black" : "white"}/>
       </View>
       <View style={styles.textContainer}>
         <Text style={styles.dayText}>{day || "N/A"}</Text>
@@ -25,16 +30,16 @@ const styles = StyleSheet.create({
     gap: 3
   },
   iconContainerActive: {
-    width: 27,
-    height: "56%",
+    width: 24,
+    height: "48%",
     backgroundColor: "yellow",
     borderRadius: 100,
     justifyContent: "center",
     alignItems: "center"
   },
   iconContainerInactive: {
-    width: 32,
-    height: "65%",
+    width: 24,
+    height: "48%",
     backgroundColor: "#2C2C36",
     borderRadius: 100,
     justifyContent: "center",
