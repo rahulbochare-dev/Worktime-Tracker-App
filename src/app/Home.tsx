@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import StreakCard from '../components/StreakCard'
 import TodaysGoal from '../components/TodaysGoal'
+import OngoingSession from '../components/OngoingSession'
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
       </View>
       <StreakCard/>
       <TodaysGoal/>
+      <OngoingSession/>
     </SafeAreaView>
   )
 }
