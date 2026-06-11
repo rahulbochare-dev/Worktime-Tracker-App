@@ -1,7 +1,22 @@
-import { Tabs } from "expo-router";
 import Lucide from "@react-native-vector-icons/lucide";
+import { useFonts } from "expo-font";
+import { Tabs } from "expo-router";
 
 export default function RootLayout() {
+  const [loaded] = useFonts({
+    GeistThin: require("../assets/fonts/Geist-Thin.ttf"),
+    GeistLight: require("../assets/fonts/Geist-Light.ttf"),
+    GeistRegular: require("../assets/fonts/Geist-Regular.ttf"),
+    GeistMedium: require("../assets/fonts/Geist-Medium.ttf"),
+    GeistSemiBold: require("../assets/fonts/Geist-SemiBold.ttf"),
+    GeistBold: require("../assets/fonts/Geist-Bold.ttf"),
+    GeistBlack: require("../assets/fonts/Geist-Black.ttf"),
+  });
+
+  if (!loaded) {
+    return null;
+  }
+
   return(
   <Tabs screenOptions={{
     tabBarActiveTintColor: "#FFFFFF",

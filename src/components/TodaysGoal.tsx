@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
   },
   todaysGoalText: {
     fontSize: 16,
+    fontFamily: "GeistRegular",
     color: "white",
     marginTop: 8
   },
