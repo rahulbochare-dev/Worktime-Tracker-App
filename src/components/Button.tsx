@@ -9,8 +9,14 @@ type props = {
 
 const Button = ({ title = "Click Here", width = "100%", primary = false, disabled }: props) => {
   return (
-    <Pressable disabled={disabled} style={({pressed}) => [primary ? styles.buttonPrimary : styles.buttonSecondary, { width }, disabled && (primary? styles.buttonPrimaryDisabled : styles.buttonSecondaryDisabled), pressed && (primary? styles.buttonPressedPrimary : styles.buttonPressedSecondary)]}>
-      <Text style={[primary ? styles.buttonTextPrimary : styles.buttonTextSecondary, disabled && (primary? styles.buttonTextPrimaryDisabled : styles.buttonTextSecondaryDisabled)]}>{title}</Text>
+    <Pressable
+      disabled={disabled}
+      style={({pressed}) => [primary ? styles.buttonPrimary : styles.buttonSecondary, { width },
+      disabled && (primary? styles.buttonPrimaryDisabled : styles.buttonSecondaryDisabled),
+      pressed && (primary? styles.buttonPressedPrimary : styles.buttonPressedSecondary)]}>
+      <Text
+        style={[primary ? styles.buttonTextPrimary : styles.buttonTextSecondary,
+        disabled && (primary? styles.buttonTextPrimaryDisabled : styles.buttonTextSecondaryDisabled)]}>{title}</Text>
     </Pressable>
   )
 }
@@ -34,6 +40,7 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     borderColor: "#707070",
     borderWidth: 0.5,
+    alignSelf: "center",
   },
   buttonPrimaryDisabled: {
     backgroundColor: "#746A0E",
