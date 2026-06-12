@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 100,
+    alignSelf: "center",
   },
   buttonSecondary: {
     height: 50,

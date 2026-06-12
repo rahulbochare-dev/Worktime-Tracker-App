@@ -2,6 +2,7 @@ import Lucide from '@react-native-vector-icons/lucide'
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import ProjectListItem from '../components/ProjectListItem'
+import Button from '@/components/Button'
 
 const Projects = () => {
   return (
@@ -26,8 +27,8 @@ const Projects = () => {
         <ProjectListItem title={"Practice Kanji"} totalTime={"4hr 34min"} timeAgo={"4 Days ago"}/>
         <ProjectListItem title={"Practice Kanji"} totalTime={"4hr 34min"} timeAgo={"4 Days ago"}/>
         <ProjectListItem title={"Practice Kanji"} totalTime={"4hr 34min"} timeAgo={"4 Days ago"}/>
-        
       </ScrollView>
+      <Button title={"Create New Project"} primary={true} width={220}/>
     </SafeAreaView>
   )
 }
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     backgroundColor: "#13131A",
-    paddingHorizontal: 16
+    paddingHorizontal: 16,
   },
   headingContainer: {
     width: "100%",
