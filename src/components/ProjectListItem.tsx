@@ -1,13 +1,80 @@
+import Lucide from '@react-native-vector-icons/lucide'
 import { StyleSheet, Text, View } from 'react-native'
 
-const Project = () => {
+type props = {
+  title: String,
+  totalTime: String | Number,
+  timeAgo: String | Number,
+}
+
+const Project = ({title = "Not Available", totalTime, timeAgo}: props) => {
+  let projectInitial = ""
+
+  if(title == "Not Available"){
+    projectInitial = "N/A"
+  } else {
+    projectInitial = title.charAt(0)
+  }
+
   return (
-    <View>
-      <Text>Project</Text>
+    <View style={styles.listItemContainer}>
+      <View style={styles.projectDeatils}>
+        <View style={styles.projectDeatilsIcon}>
+          <Text style={styles.projectDeatilsIconText}>{projectInitial}</Text>
+        </View>
+        <View>
+          <Text style={styles.projectDeatilsHeadings}>{title || "Title not Available"}</Text>
+          <Text style={styles.projectDeatilsHeadings}>Total time: {totalTime || "N/A"}</Text>
+          <Text style={styles.projectDeatilsAgo}>{timeAgo || "N/A"}</Text>
+        </View>
+      </View>
+      <Lucide name='more-vertical' size={24} color={"white"}/>
     </View>
   )
 }
 
 export default Project
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  listItemContainer: {
+    width: "100%",
+    height: 95,
+    borderBottomWidth: 0.3,
+    borderBottomColor: "#464646",
+    flexDirection: "row",
+    alignItems: "center"
+  },
+  projectDeatils: {
+    height: '100%',
+    width: "88%",
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 16
+  },
+  projectDeatilsIcon: {
+    height: 48,
+    width: 48,
+    backgroundColor: "#8282FF",
+    borderRadius: 16,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  projectDeatilsIconText: {
+    fontSize: 18,
+    fontFamily: "GeistMedium",
+    fontWeight: "100",
+    color: "white",
+  },
+  projectDeatilsHeadings: {
+    fontSize: 16,
+    fontFamily: "GeistMedium",
+    fontWeight: "100",
+    color: "white",
+  },
+  projectDeatilsAgo: {
+    fontSize: 14,
+    fontFamily: "GeistMedium",
+    fontWeight: "100",
+    color: "#828282",
+  },
+})

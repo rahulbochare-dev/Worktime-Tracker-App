@@ -1,6 +1,7 @@
 import Lucide from '@react-native-vector-icons/lucide'
 import { StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import ProjectListItem from '../components/ProjectListItem'
 
 const Projects = () => {
   return (
@@ -10,8 +11,9 @@ const Projects = () => {
           <Text style={styles.todaysSummaryText}>My Projects</Text>
           <Text style={styles.totalProjectText}>12 Projects</Text>
         </View>
-      <Lucide name="search" color={"white"} size={24}/>
+        <Lucide name="search" color={"white"} size={24} />
       </View>
+      <ProjectListItem/>
     </SafeAreaView>
   )
 }
