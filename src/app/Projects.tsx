@@ -1,5 +1,5 @@
 import Lucide from '@react-native-vector-icons/lucide'
-import { StyleSheet, Text, View } from 'react-native'
+import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import ProjectListItem from '../components/ProjectListItem'
 
@@ -11,9 +11,23 @@ const Projects = () => {
           <Text style={styles.todaysSummaryText}>My Projects</Text>
           <Text style={styles.totalProjectText}>12 Projects</Text>
         </View>
-        <Lucide name="search" color={"white"} size={24} />
+        <Lucide name="search" color={"white"} size={24}/>
       </View>
-      <ProjectListItem/>
+      <ScrollView>
+        <ProjectListItem title={"Practice Kanji"} totalTime={"4hr 34min"} timeAgo={"4 Days ago"}/>
+        <ProjectListItem title={"Practice Kanji"} totalTime={"4hr 34min"} timeAgo={"4 Days ago"}/>
+        <ProjectListItem title={"Practice Kanji"} totalTime={"4hr 34min"} timeAgo={"4 Days ago"}/>
+        <ProjectListItem title={"Practice Kanji"} totalTime={"4hr 34min"} timeAgo={"4 Days ago"}/>
+        <ProjectListItem title={"Practice Kanji"} totalTime={"4hr 34min"} timeAgo={"4 Days ago"}/>
+        <ProjectListItem title={"Practice Kanji"} totalTime={"4hr 34min"} timeAgo={"4 Days ago"}/>
+        <ProjectListItem title={"Practice Kanji"} totalTime={"4hr 34min"} timeAgo={"4 Days ago"}/>
+        <ProjectListItem title={"Practice Kanji"} totalTime={"4hr 34min"} timeAgo={"4 Days ago"}/>
+        <ProjectListItem title={"Practice Kanji"} totalTime={"4hr 34min"} timeAgo={"4 Days ago"}/>
+        <ProjectListItem title={"Practice Kanji"} totalTime={"4hr 34min"} timeAgo={"4 Days ago"}/>
+        <ProjectListItem title={"Practice Kanji"} totalTime={"4hr 34min"} timeAgo={"4 Days ago"}/>
+        <ProjectListItem title={"Practice Kanji"} totalTime={"4hr 34min"} timeAgo={"4 Days ago"}/>
+        
+      </ScrollView>
     </SafeAreaView>
   )
 }
@@ -49,5 +63,5 @@ const styles = StyleSheet.create({
     fontFamily: "GeistMedium",
     fontWeight: "100",
     color: "#828282",
-  },
+  }
 })

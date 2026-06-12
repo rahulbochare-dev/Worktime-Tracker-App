@@ -5,7 +5,7 @@ const OngoingSession = () => {
   return (
     <View style={styles.ongoinSessionContainer}>
       <View style={styles.ongoinSessionTextConatiner}>
-        <Text style={styles.ongoingSessionText}>OngoingSession</Text>
+        <Text style={styles.ongoingSessionText}>Ongoing Session</Text>
       </View>
       <Text style={styles.noOngoingSessionText}>No Ongoing Sessions</Text>
       <Button title={"Start new Session"} primary={true} width={214} disabled={false}/>

@@ -9,7 +9,7 @@ const TodaysGoal = ({progress = 78}: props) => {
   return (
     <View style={styles.todaysGoalContainer}>
       <View style={styles.goalCardNumberContainer}>
-        <Text style={styles.todaysGoalText}>Current Streak</Text>
+        <Text style={styles.todaysGoalText}>Today's Goal</Text>
         <Text style={styles.goalNumberText}>{progress.toString()}% <Text style={styles.goalNumberDaysText}>Completed</Text></Text>
       </View>
       <View style={styles.goalProgressContainer}>
@@ -26,7 +26,7 @@ const TodaysGoal = ({progress = 78}: props) => {
       </View>
       <View style={styles.tipContainer}>
         <Lucide name='info' size={18} color={"#f5d100"}/>
-        <Text style={styles.tipText}>55% Remaining to reach goal</Text>
+        <Text style={styles.tipText}>{100 - progress}% Remaining to reach goal</Text>
       </View>
     </View>
   )
