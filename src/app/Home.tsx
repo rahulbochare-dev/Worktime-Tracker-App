@@ -3,6 +3,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import StreakCard from '../components/StreakCard'
 import TodaysGoal from '../components/TodaysGoal'
 import OngoingSession from '../components/OngoingSession'
+import StartSessionModal from '../components/StartSessionModal'
 
 const Home = () => {
   return (
@@ -16,6 +17,7 @@ const Home = () => {
       <StreakCard/>
       <TodaysGoal/>
       <OngoingSession/>
+      <StartSessionModal/>
     </SafeAreaView>
   )
 }
