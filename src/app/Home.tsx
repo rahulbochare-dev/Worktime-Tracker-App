@@ -1,11 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { useState } from 'react'
 import StreakCard from '../components/StreakCard'
 import TodaysGoal from '../components/TodaysGoal'
 import OngoingSession from '../components/OngoingSession'
 import StartSessionModal from '../components/StartSessionModal'
 
 const Home = () => {
+  const [modalVisible, setModalVisible] = useState(false)
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.welcomeTextContainer}>
@@ -16,8 +19,8 @@ const Home = () => {
       </View>
       <StreakCard/>
       <TodaysGoal/>
-      <OngoingSession/>
-      <StartSessionModal/>
+      <OngoingSession func={() => setModalVisible(!modalVisible)}/>
+      <StartSessionModal visible={modalVisible} cancelFunc={() => setModalVisible(!modalVisible)}/>
     </SafeAreaView>
   )
 }

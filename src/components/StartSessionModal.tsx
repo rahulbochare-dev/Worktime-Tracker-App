@@ -1,12 +1,14 @@
-import { Modal, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { Modal, StyleSheet, Text, View } from "react-native";
 import Button from "./Button";
 import Dropdown from "./Dropdown";
 
-type StartSessionModalProps = {
-  visible: boolean;
+type props = {
+  visible: boolean,
+  startFunc: Function,
+  cancelFunc: Function
 };
 
-const StartSessionModal = ({ visible }: StartSessionModalProps) => {
+const StartSessionModal = ({ visible, startFunc, cancelFunc }: props) => {
   return (
     <Modal
       visible={visible}
@@ -16,8 +18,8 @@ const StartSessionModal = ({ visible }: StartSessionModalProps) => {
         <View style={styles.modalContainer}>
           <Text style={styles.titleText}>Start New Session</Text>
           <Dropdown/>
-          <Button title={"Start Session"} primary={true} disabled={false} width={"100%"}/>
-          <Button title={"Cancel"} primary={false} disabled={false} width={"100%"}/>
+          <Button title={"Start Session"} primary={true} disabled={false} width={"100%"} func={startFunc}/>
+          <Button title={"Cancel"} primary={false} disabled={false} width={"100%"} func={cancelFunc}/>
         </View>
       </View>
     </Modal>

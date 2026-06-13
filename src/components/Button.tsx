@@ -4,12 +4,14 @@ type props = {
   title: String,
   width: Number | String,
   primary: Boolean,
-  disabled: Boolean
+  disabled: Boolean,
+  func: Function
 }
 
-const Button = ({ title = "Click Here", width = "100%", primary = false, disabled }: props) => {
+const Button = ({ title = "Click Here", width = "100%", primary = false, disabled, func }: props) => {
   return (
     <Pressable
+      onPress={func}
       disabled={disabled}
       style={({pressed}) => [primary ? styles.buttonPrimary : styles.buttonSecondary, { width },
       disabled && (primary? styles.buttonPrimaryDisabled : styles.buttonSecondaryDisabled),
