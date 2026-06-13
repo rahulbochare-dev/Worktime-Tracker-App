@@ -10,17 +10,17 @@ const StreakCard = () => {
                     <Text style={styles.currentStreakNumberText}>23 <Text style={styles.currentStreakNumberDaysText}>Days</Text></Text>
                 </View>
                 <View style={styles.streakCardIconContainer}>
-                    <Image width={34} src='src/assets/burn.png'/>
+                    <Image width={34} src='src/assets/burn.png' />
                 </View>
             </View>
             <View style={styles.streakCardDaysContainer}>
-                <StreakDay day={"Mon"} isActive={true}/>
-                <StreakDay day={"Tue"} isActive={true}/>
-                <StreakDay day={"Wed"} isActive={true}/>
-                <StreakDay day={"Thu"} isActive={true}/>
-                <StreakDay day={"Fri"} isActive={true}/>
-                <StreakDay day={"Sat"} isActive={true}/>
-                <StreakDay day={"Sun"} isActive={false}/>
+                <StreakDay day={"Mon"} isActive={true} />
+                <StreakDay day={"Tue"} isActive={true} />
+                <StreakDay day={"Wed"} isActive={true} />
+                <StreakDay day={"Thu"} isActive={true} />
+                <StreakDay day={"Fri"} isActive={true} />
+                <StreakDay day={"Sat"} isActive={true} />
+                <StreakDay day={"Sun"} isActive={false} />
             </View>
         </View>
     )
