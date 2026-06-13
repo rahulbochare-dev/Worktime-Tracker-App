@@ -1,4 +1,5 @@
 import Lucide from "@react-native-vector-icons/lucide";
+import { Pressable } from "react-native";
 import { useFonts } from "expo-font";
 import { Tabs } from "expo-router";
 
@@ -19,23 +20,46 @@ export default function RootLayout() {
 
   return(
   <Tabs screenOptions={{
-    tabBarActiveTintColor: "#FFFFFF",
+    tabBarActiveTintColor: "#00000",
+    tabBarInactiveTintColor: "white",
     tabBarStyle: {
-      marginBottom: 16,
       backgroundColor: "#1F1F29",
+      height: 108,
+      borderWidth: 0.5,
+      borderColor: "#464646",
     },
     headerShown: false,
-    tabBarLabelStyle: {
-      fontSize: 12,
-      fontFamily: "GeistMedium",
-    }
+    tabBarShowLabel: false,
+    tabBarItemStyle: {
+      flexDirection: "row",
+      justifyContent: "space-around",
+      alignItems: "center",
+      paddingHorizontal: 12,
+    },
+    tabBarButton: (props) => {
+      const focused = props["aria-selected"];
+      return (
+        <Pressable
+          onPress={props.onPress}
+          onLongPress={props.onLongPress}
+          style={{
+            width: 40,
+            height: 40,
+            borderRadius: 10,
+            overflow: "hidden",
+            backgroundColor: focused ? "yellow" : "transparent",
+            justifyContent: "center",
+            alignItems: "center",
+          }}>{props.children}</Pressable>
+      );
+    },
   }}
   >
     <Tabs.Screen
       name="Home"
       options={{
         tabBarIcon: ({color}) => {
-          return <Lucide name="home" size={22} color={color}/>
+          return <Lucide name="home" size={24} color={color}/>
         }
       }}
     />
@@ -43,7 +67,7 @@ export default function RootLayout() {
       name="Projects"
       options={{
         tabBarIcon: ({color}) => {
-          return <Lucide name="clipboard" size={22} color={color}/>
+          return <Lucide name="clipboard" size={24} color={color}/>
         }
       }}
     />
@@ -51,7 +75,7 @@ export default function RootLayout() {
       name="Track"
       options={{
         tabBarIcon: ({color}) => {
-          return <Lucide name="alarm-clock-check" size={22} color={color}/>
+          return <Lucide name="alarm-clock-check" size={24} color={color}/>
         }
       }}
     />
@@ -59,7 +83,7 @@ export default function RootLayout() {
       name="Stats"
       options={{
         tabBarIcon: ({color}) => {
-          return <Lucide name="chart-line" size={22} color={color}/>
+          return <Lucide name="chart-line" size={24} color={color}/>
         }
       }}
     />
@@ -67,7 +91,7 @@ export default function RootLayout() {
       name="Settings"
       options={{
         tabBarIcon: ({color}) => {
-          return <Lucide name="settings" size={22} color={color}/>
+          return <Lucide name="settings" size={24} color={color}/>
         }
       }}
     />
