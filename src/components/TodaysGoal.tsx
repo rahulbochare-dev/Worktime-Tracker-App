@@ -34,7 +34,7 @@ const TodaysGoal = ({progress = 78}: props) => {
 
 export default TodaysGoal
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   todaysGoalContainer: {
     width: "100%",
     minHeight: 195,
