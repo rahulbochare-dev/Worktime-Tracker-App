@@ -1,7 +1,8 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Lucide } from '@react-native-vector-icons/lucide'
 import MainStatCard from '@/components/MainStatCard'
+import StatCard from '@/components/StatCard'
 
 const Stats = () => {
   return (
@@ -12,7 +13,39 @@ const Stats = () => {
           <Text style={styles.heading2Text}>12 Projects</Text>
         </View>
       </View>
-      <MainStatCard/>
+      <MainStatCard />
+      <ScrollView >
+        <View style={styles.cardContainer}>
+          <StatCard
+            title={"Streak"}
+            icon={"flame"}
+            iconColor={"orange"}
+            mainNumber={65}
+            mainNumberText={"Days"}
+            tip={"35 Days away from 100"}/>
+          <StatCard
+            title={"Avg/day"}
+            icon={"timer"}
+            iconColor={"#0090FF"}
+            mainNumber={4.3}
+            mainNumberText={"Hours"}
+            tip={"2 hr more than last day"}/>
+          <StatCard
+            title={"This Month"}
+            icon={"calendar-1"}
+            iconColor={"#AF53FF"}
+            mainNumber={136}
+            mainNumberText={"Hours"}
+            tip={"22 hrs more than last month"}/>
+          <StatCard
+            title={"This Week"}
+            icon={"calendar-days"}
+            iconColor={"#78C749"}
+            mainNumber={35.7}
+            mainNumberText={"Hours"}
+            tip={"3 hrs less than last week"}/>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   )
 }
@@ -48,5 +81,14 @@ const styles = StyleSheet.create({
     fontFamily: "GeistMedium",
     fontWeight: "100",
     color: "#828282",
-  }
+  },
+  cardContainer: {
+    width: "100%",
+    height: 122,
+    marginTop: 8,
+    paddingTop: 8,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+  },
 })
