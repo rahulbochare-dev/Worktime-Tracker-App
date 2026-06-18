@@ -3,12 +3,15 @@ import Lucide from '@react-native-vector-icons/lucide'
 import { StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { start, pause, resume, end, getElapsedTime, getStatus, getIsEnded } from '../utils/timer'
+import { convertFormat } from '../utils/convertFormat'
 import { useState, useEffect } from 'react'
 
 const Track = () => {
   const [time, setTime] = useState(0)
   const [status, setStatus] = useState(null)
   const [isEnded, setIsEnded] = useState(null)
+
+  const { hours, minutes, seconds } = convertFormat(time);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -62,7 +65,7 @@ const Track = () => {
           <Lucide name='timer-reset' size={24} color={"white"} />
         </View>
         <View style={styles.trackTimerContainer}>
-          <Text style={styles.timerText}>02:33:45</Text>
+          <Text style={styles.timerText}>{`${hours}:${minutes}:${seconds}`}</Text>
           <View style={styles.trackTimerLableContainer}>
             <Text style={styles.trackTimerLableText}>H</Text>
             <Text style={styles.trackTimerLableText}>M</Text>
