@@ -2,8 +2,49 @@ import Button from '@/components/Button'
 import Lucide from '@react-native-vector-icons/lucide'
 import { StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { start, pause, resume, end, getElapsedTime, getStatus, getIsEnded } from '../utils/timer'
+import { useState, useEffect } from 'react'
 
 const Track = () => {
+  const [time, setTime] = useState(0)
+  const [status, setStatus] = useState(null)
+  const [isEnded, setIsEnded] = useState(null)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(getElapsedTime())
+      console.log(getElapsedTime())
+    }, 1000)
+
+    setStatus(getStatus())
+    setIsEnded(getIsEnded())
+    
+    return () => clearInterval(interval)
+  }, [])
+  console.log(status)
+
+  const handleStart = () => {
+    start()
+    setStatus(getStatus())
+  }
+
+  const handlePause = () => {
+    pause()
+    setStatus(getStatus())
+  }
+
+  const handleResume = () => {
+    resume()
+    setStatus(getStatus())
+    setIsEnded(getIsEnded())
+  }
+
+  const handleEnd = () => {
+    end()
+    setStatus(getStatus())
+    setIsEnded(getIsEnded())
+  }
+  
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.headingContainer}>
@@ -29,9 +70,11 @@ const Track = () => {
           </View>
         </View>
         <View style={styles.buttonsContainer}>
-          <Button title={"Resume"} primary={false} width={"48%"} disabled={false}/>
-          <Button title={"Pause"} primary={false} width={"48%"} disabled={false}/>
-          <Button title={"End Session"} primary={false} width={"100%"} disabled={false}/>
+          <Button title={isEnded? "Start" : status? "Running" : time > 0? "Resume" : "Start"} primary={false} width={"48%"} disabled={status} func={handleResume}/>
+          {status? <Button title={"Pause"} primary={false} width={"48%"} disabled={false} func={handlePause}/> :
+          <Button title={"Pause"} primary={false} width={"48%"} disabled={true}/>
+          }
+          <Button title={"End Session"} primary={false} width={"100%"} disabled={false} func={handleEnd}/>
         </View>
       </View>
       <View style={styles.notesContainer}>
