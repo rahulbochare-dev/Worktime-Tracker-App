@@ -2,7 +2,7 @@ import Button from '@/components/Button'
 import Lucide from '@react-native-vector-icons/lucide'
 import { StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { start, pause, resume, end, getElapsedTime, getStatus, getIsEnded } from '../utils/timer'
+import { start, pause, resume, end, getElapsedTime, resetTimer, getStatus, getIsEnded } from '../utils/timer'
 import { convertFormat } from '../utils/convertFormat'
 import { useState, useEffect } from 'react'
 
@@ -47,6 +47,12 @@ const Track = () => {
     setStatus(getStatus())
     setIsEnded(getIsEnded())
   }
+
+  const handleReset = () => {
+    resetTimer()
+    setStatus(getStatus())
+    setIsEnded(getIsEnded())
+  }
   
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -62,7 +68,7 @@ const Track = () => {
             <Text style={styles.projectDeatilsHeading}>Practice Kanji</Text>
             <Text style={styles.projectDeatilsAgo}>Started: 33min ago</Text>
           </View>
-          <Lucide name='timer-reset' size={24} color={"white"} />
+          <Lucide name='timer-reset' size={24} color={"white"} onPress={handleReset}/>
         </View>
         <View style={styles.trackTimerContainer}>
           <Text style={styles.timerText}>{`${hours}:${minutes}:${seconds}`}</Text>

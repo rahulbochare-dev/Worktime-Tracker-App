@@ -44,6 +44,12 @@ export const end = () => {
   return finalTime
 }
 
+export const resetTimer = () => {
+  startTime = null
+  isRunning = false
+  elapsedTime = 0
+  isEnded = false
+}
 export const getStatus = () => {
   return isRunning
 }
