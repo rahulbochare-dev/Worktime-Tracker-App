@@ -16,7 +16,6 @@ const Track = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setTime(getElapsedTime())
-      console.log(getElapsedTime())
     }, 1000)
 
     setStatus(getStatus())
@@ -24,7 +23,6 @@ const Track = () => {
     
     return () => clearInterval(interval)
   }, [])
-  console.log(status)
 
   const handleStart = () => {
     start()
