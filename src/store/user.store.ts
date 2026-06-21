@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { createUser } from '../controllers/user.controller'
 
-export const useUser = create((set) => ({
+export const useUserStore = create((set) => ({
   user: null,
   loading: true,
   error: null,
@@ -12,6 +12,7 @@ export const useUser = create((set) => ({
       set({user: response, loading: false})
       return response
     } catch (error) {
+      console.log(error)
       set({error: error})
     }
   }
