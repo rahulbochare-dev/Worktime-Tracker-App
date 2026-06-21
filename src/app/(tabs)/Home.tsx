@@ -1,10 +1,10 @@
+import { useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { useState } from 'react'
-import StreakCard from '../components/StreakCard'
-import TodaysGoal from '../components/TodaysGoal'
-import OngoingSession from '../components/OngoingSession'
-import StartSessionModal from '../components/StartSessionModal'
+import OngoingSession from '../../components/OngoingSession'
+import StartSessionModal from '../../components/StartSessionModal'
+import StreakCard from '../../components/StreakCard'
+import TodaysGoal from '../../components/TodaysGoal'
 
 const Home = () => {
   const [modalVisible, setModalVisible] = useState(false)

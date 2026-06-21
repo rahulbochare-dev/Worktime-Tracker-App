@@ -1,10 +1,10 @@
 import Button from '@/components/Button'
 import Lucide from '@react-native-vector-icons/lucide'
+import { useEffect, useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { start, pause, resume, end, getElapsedTime, resetTimer, getStatus, getIsEnded } from '../utils/timer'
-import { convertFormat } from '../utils/convertFormat'
-import { useState, useEffect } from 'react'
+import { convertFormat } from '../../utils/convertFormat'
+import { end, getElapsedTime, getIsEnded, getStatus, pause, resetTimer, resume, start } from '../../utils/timer'
 
 const Track = () => {
   const [time, setTime] = useState(0)

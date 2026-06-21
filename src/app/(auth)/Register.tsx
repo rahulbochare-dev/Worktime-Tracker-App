@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native'
-import { TextInput } from '../components/TextInput'
+import TextInput from '@/components/TextInput'
 
 const Register = () => {
   return (
-    <View>
-      <TextInput/>
+    <View >
+      <TextInput placeholder='Enter Firstname' label='First Name:'/>
     </View>
   )
 }

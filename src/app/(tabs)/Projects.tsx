@@ -1,8 +1,8 @@
 import Lucide from '@react-native-vector-icons/lucide'
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import ProjectListItem from '../components/ProjectListItem'
-import Button from '../components/Button'
+import Button from '../../components/Button'
+import ProjectListItem from '../../components/ProjectListItem'
 
 const Projects = () => {
   return (
