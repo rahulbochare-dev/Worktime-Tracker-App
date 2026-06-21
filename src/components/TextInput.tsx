@@ -5,10 +5,11 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 type props = {
   placeholder: string
   label: string
+  name: string
+  func: Function
 }
 
-const TextInputField = ({ placeholder, label }: props) => {
-  const [value, setValue] = useState("")
+const TextInputField = ({ placeholder, label, name, func }: props) => {
 
   return (
     <SafeAreaView>
@@ -20,8 +21,9 @@ const TextInputField = ({ placeholder, label }: props) => {
             placeholder={placeholder}
             placeholderTextColor={"#464646"}
             cursorColor={"black"}
-            value={value}
-            onChangeText={setValue} />
+            className={name}
+            onChangeText={(text) => func(name, text)}
+            />
         </View>
       </View>
     </SafeAreaView>
@@ -32,7 +34,7 @@ export default TextInputField
 
 const styles = StyleSheet.create({
   mainContainer: {
-    height: 50,
+    height: 75,
     width: "90%",
     alignSelf: "center",
   },
@@ -41,10 +43,10 @@ const styles = StyleSheet.create({
     height: 44,
     borderWidth: 0.5,
     borderColor: "#464646",
-    marginTop: 8,
+    marginTop: 5,
     borderRadius: 16,
     alignItems: "center",
-    paddingHorizontal: 12,
+    paddingHorizontal: 10,
   },
   textInput: {
     width: "100%",
