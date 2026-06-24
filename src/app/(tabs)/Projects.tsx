@@ -3,6 +3,7 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Button from '../../components/Button'
 import ProjectListItem from '../../components/ProjectListItem'
+import EmptyState from '../../components/EmptyState'
 
 const Projects = () => {
   return (
@@ -15,18 +16,7 @@ const Projects = () => {
         <Lucide name="search" color={"white"} size={24}/>
       </View>
       <ScrollView>
-        <ProjectListItem title={"Practice Kanji"} totalTime={"4hr 34min"} timeAgo={"4 Days ago"}/>
-        <ProjectListItem title={"Practice Kanji"} totalTime={"4hr 34min"} timeAgo={"4 Days ago"}/>
-        <ProjectListItem title={"Practice Kanji"} totalTime={"4hr 34min"} timeAgo={"4 Days ago"}/>
-        <ProjectListItem title={"Practice Kanji"} totalTime={"4hr 34min"} timeAgo={"4 Days ago"}/>
-        <ProjectListItem title={"Practice Kanji"} totalTime={"4hr 34min"} timeAgo={"4 Days ago"}/>
-        <ProjectListItem title={"Practice Kanji"} totalTime={"4hr 34min"} timeAgo={"4 Days ago"}/>
-        <ProjectListItem title={"Practice Kanji"} totalTime={"4hr 34min"} timeAgo={"4 Days ago"}/>
-        <ProjectListItem title={"Practice Kanji"} totalTime={"4hr 34min"} timeAgo={"4 Days ago"}/>
-        <ProjectListItem title={"Practice Kanji"} totalTime={"4hr 34min"} timeAgo={"4 Days ago"}/>
-        <ProjectListItem title={"Practice Kanji"} totalTime={"4hr 34min"} timeAgo={"4 Days ago"}/>
-        <ProjectListItem title={"Practice Kanji"} totalTime={"4hr 34min"} timeAgo={"4 Days ago"}/>
-        <ProjectListItem title={"Practice Kanji"} totalTime={"4hr 34min"} timeAgo={"4 Days ago"}/>
+        <EmptyState icon='package' title='You have no projects' description='Once you create projects, they will appeare here.'/>
       </ScrollView>
       <Button title={"Create New Project"} primary={true} width={220} disabled={false}/>
     </SafeAreaView>

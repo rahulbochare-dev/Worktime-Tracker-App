@@ -9,7 +9,7 @@ export default function Index(){
   useEffect(() => {
     const checkUser = async () => {
       const user = await getUser()
-      setHasUser(user.length > 0)
+      setHasUser(user?.length > 0)
     }
     checkUser()
   }, [])
@@ -19,6 +19,6 @@ export default function Index(){
   }
   
   return hasUser?
-    <Redirect href={"/Home"}/>
-    : <Redirect href={"/Register"}/>
+    <Redirect href={"/Home"}/>:
+    <Redirect href={"/Register"}/>
 }
