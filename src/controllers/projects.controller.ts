@@ -3,7 +3,7 @@ import { db } from "../db/index";
 import { projects } from "@/db/schema";
 import { eq } from "drizzle-orm";
 
-export const createUser = async (projectName: string, description: string) => {
+export const createProject = async (projectName: string, description: string) => {
   let message = ""
   let success = true
 
