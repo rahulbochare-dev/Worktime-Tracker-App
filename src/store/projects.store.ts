@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { createProject } from '../controllers/projects.controller'
+import { createProject, getProjects } from '../controllers/projects.controller'
 
 export const useProjectStore = create((set) => ({
   projects: null,
@@ -9,10 +9,20 @@ export const useProjectStore = create((set) => ({
   createProject: async (projectName: string, description: string) => {
     try {
       const response = await createProject(projectName, description)
-      set({loading: false})
+      set({ loading: false })
       return response
     } catch (error) {
-      set({error: error})
+      set({ error: error })
+    }
+  },
+
+  getProjects: async () => {
+    try {
+      const response = await getProjects()
+      set({ projects: response?.projects, loading: false })
+      return response
+    } catch (error) {
+      set({ error: error })
     }
   }
 }))

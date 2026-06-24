@@ -1,4 +1,4 @@
-import { createProjectQuery } from "../db/queries/project.queries";
+import { createProjectQuery, getProjectQuery } from "../db/queries/project.queries";
 import { db } from "../db/index";
 import { projects } from "@/db/schema";
 import { eq } from "drizzle-orm";
@@ -28,5 +28,25 @@ export const createProject = async (projectName: string, description: string) =>
     message: "Project created successfully",
     success: true,
     createdProject: createdProject[0]
+})
+}
+
+export const getProjects = async () => {
+  let message = ""
+  let success = true
+
+  const response = await getProjectQuery()
+
+  if(!response){
+    message = "Projects not found!"
+    success = false
+    return
+  }
+
+  return ({
+    response,
+    message: "Projects fetched successfully",
+    success: true,
+    projects: response[0]
 })
 }

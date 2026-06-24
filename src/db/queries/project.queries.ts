@@ -11,3 +11,8 @@ export const createProjectQuery = async (projectName: string, description: strin
 
   return response;
 }
+
+export const getProjectQuery = async () => {
+  const response = await db.select().from(projects)
+  return response;
+}
