@@ -47,6 +47,6 @@ export const getProjects = async () => {
     response,
     message: "Projects fetched successfully",
     success: true,
-    projects: response[0]
+    projects: response
 })
 }

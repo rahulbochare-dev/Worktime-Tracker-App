@@ -5,10 +5,20 @@ import Button from '../../components/Button'
 import ProjectListItem from '../../components/ProjectListItem'
 import EmptyState from '../../components/EmptyState'
 import CreateProject from '../../components/CreateProject'
-import { useState } from 'react'
+import { getProjects, useProjectStore } from '../../store/projects.store'
+import { useState, useEffect } from 'react'
 
 const Projects = () => {
   const [modalVisible, setModalVisible] = useState(false)
+  const {projects, getProjects} = useProjectStore()
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      const response = await getProjects()
+    }
+    fetchProjects()
+  }, [])
+  
 
   return (
     <SafeAreaView style={styles.safeArea}>
