@@ -7,11 +7,11 @@ import Button from "./Button";
 
 type props = {
   visible: boolean,
-  createFunc: Function,
+  toggleModal: Function,
   cancelFunc: Function
 };
 
-const CreateProject = ({ visible, createFunc, cancelFunc }: props) => {
+const CreateProject = ({ visible, toggleModal, cancelFunc }: props) => {
   const [projectData, setProjectData] = useState({
     projectName: "",
     projectDescription: ""
@@ -25,6 +25,9 @@ const CreateProject = ({ visible, createFunc, cancelFunc }: props) => {
 
   const onSubmit = async () => {
     const response = await createProject(projectData.projectName, projectData.projectDescription)
+    if(response?.success){
+      toggleModal(false)
+    }
   }
 
   return (

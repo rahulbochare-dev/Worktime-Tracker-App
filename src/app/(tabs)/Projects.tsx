@@ -17,7 +17,7 @@ const Projects = () => {
       const response = await getProjects()
     }
     fetchProjects()
-  }, [])
+  }, [modalVisible])
   
 
   return (
@@ -30,10 +30,13 @@ const Projects = () => {
         <Lucide name="search" color={"white"} size={24}/>
       </View>
       <ScrollView>
-        <EmptyState icon='package' title='You have no projects' description='Once you create projects, they will appeare here.'/>
+        {projects? null : <EmptyState icon='package' title='You have no projects' description='Once you create projects, they will appeare here.'/>}
+        {projects?.map((items) => {
+          return <ProjectListItem title={items?.name} />
+        })}
       </ScrollView>
       <Button title={"Create New Project"} primary={true} width={220} disabled={false} func={() => setModalVisible(!modalVisible)}/>
-      <CreateProject visible={modalVisible} cancelFunc={() => setModalVisible(!modalVisible)}/>
+      <CreateProject visible={modalVisible} cancelFunc={() => setModalVisible(!modalVisible)} toggleModal={setModalVisible}/>
     </SafeAreaView>
   )
 }
