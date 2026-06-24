@@ -21,7 +21,6 @@ const Register = () => {
     const response = await createUser(formData.firstName, formData.lastName)
     
     if(response?.success){
-      console.log("ee");
       router.replace("/Home");
     }
   }

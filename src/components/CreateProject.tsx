@@ -1,6 +1,8 @@
 import { Modal, StyleSheet, Text, View } from "react-native";
 import { useState } from "react";
+import { useProjectStore } from "../store/projects.store";
 import TextInputField from "./TextInput";
+import TextAreaField from "./TextAreaField";
 import Button from "./Button";
 
 type props = {
@@ -10,10 +12,19 @@ type props = {
 };
 
 const CreateProject = ({ visible, createFunc, cancelFunc }: props) => {
-  const [projectName, setProjectName] = useState("")
+  const [projectData, setProjectData] = useState({
+    projectName: "",
+    projectDescription: ""
+  })
+
+  const {createProject} = useProjectStore()
     
   const onChange = (name: string, text: string) => {
-    setProjectName(text)
+    setProjectData({...projectData, [name]: text})
+  }
+
+  const onSubmit = async () => {
+    const response = await createProject(projectData.projectName, projectData.projectDescription)
   }
 
   return (
@@ -24,8 +35,9 @@ const CreateProject = ({ visible, createFunc, cancelFunc }: props) => {
       <View style={styles.backdrop}>
         <View style={styles.modalContainer}>
           <Text style={styles.titleText}>Create new Project</Text>
-          <TextInputField name="projectname" placeholder="Project name" func={onChange}/>
-          <Button title={"Create Project"} primary={true} disabled={false} width={"100%"} func={createFunc}/>
+          <TextInputField name="projectName" placeholder="Project name" func={onChange}/>
+          <TextAreaField name="projectDescription" placeholder="Project Description" func={onChange}/>
+          <Button title={"Create Project"} primary={true} disabled={false} width={"100%"} func={onSubmit}/>
           <Button title={"Cancel"} primary={false} disabled={false} width={"100%"} func={cancelFunc}/>
         </View>
       </View>
