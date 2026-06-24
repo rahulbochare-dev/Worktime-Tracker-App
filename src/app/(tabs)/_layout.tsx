@@ -5,6 +5,8 @@ import { Pressable } from "react-native";
 import { useUserStore } from "../../store/user.store";
 
 export default function TabLayout() {
+  const { firstName, lastName } = useUserStore()
+
   const [loaded] = useFonts({
     GeistThin: require("../../assets/fonts/Geist-Thin.ttf"),
     GeistLight: require("../../assets/fonts/Geist-Light.ttf"),
@@ -17,9 +19,9 @@ export default function TabLayout() {
 
   if (!loaded) return null;
 
-  const { user } = useUserStore()
+  console.log(firstName)
 
-  if(!user){
+  if(!firstName || !lastName){
     return <Redirect href={"/Register"}/>
   }
 
