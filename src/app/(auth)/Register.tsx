@@ -3,6 +3,7 @@ import TextInput from '@/components/TextInput'
 import { useState } from 'react'
 import Button from '@/components/Button'
 import { useUserStore } from '../../store/user.store'
+import { router } from 'expo-router'
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -10,7 +11,7 @@ const Register = () => {
     lastName: ""
   })
   
-  const {firstName, lastName, createUser} = useUserStore()
+  const {createUser} = useUserStore()
   
   const onChange = (name: string, text: string) => {
     setFormData({...formData, [name]: text})
@@ -18,6 +19,11 @@ const Register = () => {
   
   const onSubmit = async () => {
     const response = await createUser(formData.firstName, formData.lastName)
+    
+    if(response?.success){
+      console.log("ee");
+      router.replace("/Home");
+    }
   }
 
   return (

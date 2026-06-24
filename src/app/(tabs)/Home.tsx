@@ -5,14 +5,17 @@ import OngoingSession from '../../components/OngoingSession'
 import StartSessionModal from '../../components/StartSessionModal'
 import StreakCard from '../../components/StreakCard'
 import TodaysGoal from '../../components/TodaysGoal'
+import { useUserStore } from '@/store/user.store'
 
 const Home = () => {
   const [modalVisible, setModalVisible] = useState(false)
 
+  const {firstName} = useUserStore()
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.welcomeTextContainer}>
-        <Text style={styles.welcomeText}><Text style={styles.welcomeTextGrey}>Good Evening,</Text> User</Text>
+        <Text style={styles.welcomeText}><Text style={styles.welcomeTextGrey}>Good Evening,</Text> {firstName}</Text>
       </View>
       <View>
         <Text style={styles.todaysSummaryText}>Today's Summary</Text>

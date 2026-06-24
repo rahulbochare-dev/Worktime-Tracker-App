@@ -11,3 +11,8 @@ export const createUserQuery = async (firstName: string, lastName: string) => {
 
   return response;
 }
+
+export const getUserQuery = async () => {
+  const response = await db.select().from(user)
+  return response;
+}

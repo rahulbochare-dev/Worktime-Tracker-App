@@ -1,4 +1,4 @@
-import { createUserQuery } from "../db/queries/user.queries";
+import { createUserQuery, getUserQuery } from "../db/queries/user.queries";
 import { db } from "../db/index";
 import { user } from "@/db/schema";
 import { eq } from "drizzle-orm";
@@ -28,5 +28,25 @@ export const createUser = async (firstName: string, lastName: string) => {
     message: "User created successfully",
     success: true,
     registeredUser: registeredUser[0]
+})
+}
+
+export const getUser = async () => {
+  let message = ""
+  let success = true
+
+  const response = await getUserQuery()
+
+  if(!response){
+    message = "User not found!"
+    success = false
+    return
+  }
+
+  return ({
+    response,
+    message: "User created successfully",
+    success: true,
+    user: response[0]
 })
 }

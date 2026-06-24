@@ -1,11 +1,13 @@
 import Lucide from "@react-native-vector-icons/lucide";
+import { useState, useEffect } from "react";
 import { useFonts } from "expo-font";
 import { Redirect, Stack, Tabs } from "expo-router";
 import { Pressable } from "react-native";
 import { useUserStore } from "../../store/user.store";
 
 export default function TabLayout() {
-  const { firstName, lastName } = useUserStore()
+  const [hasUser, setHasUser] = useState(null)
+  const {getUser} = useUserStore()
 
   const [loaded] = useFonts({
     GeistThin: require("../../assets/fonts/Geist-Thin.ttf"),
@@ -17,13 +19,23 @@ export default function TabLayout() {
     GeistBlack: require("../../assets/fonts/Geist-Black.ttf"),
   });
 
-  if (!loaded) return null;
+  useEffect(() => {
+    const getUserFunc = async () => {
+      const response = await getUser()
+      setHasUser(response.length > 0)
+    }
+    getUserFunc()
+  }, [loaded])
 
-  console.log(firstName)
+  if(hasUser === null){
+    return null
+  }
 
-  if(!firstName || !lastName){
+  if(!hasUser){
     return <Redirect href={"/Register"}/>
   }
+
+  if (!loaded) return null;
 
   return (
     <>
