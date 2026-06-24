@@ -4,8 +4,12 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import Button from '../../components/Button'
 import ProjectListItem from '../../components/ProjectListItem'
 import EmptyState from '../../components/EmptyState'
+import CreateProject from '../../components/CreateProject'
+import { useState } from 'react'
 
 const Projects = () => {
+  const [modalVisible, setModalVisible] = useState(false)
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.headingContainer}>
@@ -18,7 +22,8 @@ const Projects = () => {
       <ScrollView>
         <EmptyState icon='package' title='You have no projects' description='Once you create projects, they will appeare here.'/>
       </ScrollView>
-      <Button title={"Create New Project"} primary={true} width={220} disabled={false}/>
+      <Button title={"Create New Project"} primary={true} width={220} disabled={false} func={() => setModalVisible(!modalVisible)}/>
+      <CreateProject visible={modalVisible} cancelFunc={() => setModalVisible(!modalVisible)}/>
     </SafeAreaView>
   )
 }

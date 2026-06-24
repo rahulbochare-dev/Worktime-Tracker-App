@@ -1,55 +1,67 @@
-import { useState } from 'react'
-import { StyleSheet, Text, TextInput, View } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import Lucide from "@react-native-vector-icons/lucide";
+import { StyleSheet, Text, TextInput, View } from "react-native";
 
-type props = {
-  placeholder: string
-  label: string
-  name: string
-  func: Function
-}
+type Props = {
+  placeholder: string;
+  label?: string;
+  name: string;
+  func: (name: string, text: string) => void;
+};
 
-const TextInputField = ({ placeholder, label, name, func }: props) => {
-
+const TextInputField = ({ placeholder, label, name, func }: Props) => {
   return (
-    <SafeAreaView>
-      <View style={styles.mainContainer}>
-        <Text>{label}</Text>
-        <View style={styles.container}>
-          <TextInput
-            style={styles.textInput}
-            placeholder={placeholder}
-            placeholderTextColor={"#464646"}
-            cursorColor={"black"}
-            className={name}
-            onChangeText={(text) => func(name, text)}
-            />
-        </View>
-      </View>
-    </SafeAreaView>
-  )
-}
+    <View style={styles.mainContainer}>
+      {label ? <Text style={styles.label}>{label}</Text> : null}
 
-export default TextInputField
+      <View style={styles.container}>
+        <TextInput
+          style={styles.textInput}
+          placeholder={placeholder}
+          placeholderTextColor="#6B6B76"
+          selectionColor="white"
+          cursorColor="white"
+          onChangeText={(text) => func(name, text)}
+        />
+      </View>
+    </View>
+  );
+};
+
+export default TextInputField;
 
 const styles = StyleSheet.create({
   mainContainer: {
-    height: 75,
-    width: "90%",
-    alignSelf: "center",
+    width: "100%",
+    marginTop: 8,
   },
+
+  label: {
+    fontSize: 14,
+    fontFamily: "GeistMedium",
+    color: "white",
+    marginBottom: 6,
+  },
+
   container: {
     width: "100%",
-    height: 44,
+    height: 52,
     borderWidth: 0.5,
-    borderColor: "#464646",
-    marginTop: 5,
-    borderRadius: 16,
+    borderColor: "#2F3240",
+    borderRadius: 18,
+    backgroundColor: "#0D111C",
+    paddingHorizontal: 16,
+    flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: 10,
+    justifyContent: "space-between",
   },
+
   textInput: {
-    width: "100%",
-    height: "100%"
-  }
-})
+    flex: 1,
+    height: "100%",
+    color: "white",
+    fontSize: 16,
+    fontFamily: "GeistRegular",
+    paddingVertical: 0,
+    marginRight: 10,
+  },
+});
