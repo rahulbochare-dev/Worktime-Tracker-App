@@ -1,6 +1,6 @@
 import Lucide from '@react-native-vector-icons/lucide'
 import { StyleSheet, Text, View } from 'react-native'
-import ProjectMenuModal from './Menu'
+import Menu from './Menu'
 import { useState } from 'react'
 
 type props = {
@@ -32,7 +32,7 @@ const Project = ({ title = "Not Available", totalTime, timeAgo }: props) => {
         </View>
       </View>
       <Lucide name='more-vertical' size={24} color={"white"} onPress={() => setVisible(!visible)} />
-        <ProjectMenuModal visible={visible} onClose={() => setVisible(!visible)}/>
+        <Menu visible={visible} onClose={() => setVisible(!visible)}/>
     </View>
   )
 }

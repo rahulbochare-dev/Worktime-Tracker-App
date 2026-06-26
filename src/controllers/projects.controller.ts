@@ -1,4 +1,4 @@
-import { createProjectQuery, getProjectQuery } from "../db/queries/project.queries";
+import { createProjectQuery, getProjectQuery, deleteProjectQuery } from "../db/queries/project.queries";
 import { db } from "../db/index";
 import { projects } from "@/db/schema";
 import { eq } from "drizzle-orm";
@@ -46,6 +46,26 @@ export const getProjects = async () => {
   return ({
     response,
     message: "Projects fetched successfully",
+    success: true,
+    projects: response
+})
+}
+
+export const deleteProject = async (id: number) => {
+  let message = ""
+  let success = true
+
+  const response = await deleteProjectQuery(id)
+
+  if(!response){
+    message = "Project not deleted!"
+    success = false
+    return
+  }
+
+  return ({
+    response,
+    message: "Projects deleted successfully",
     success: true,
     projects: response
 })
