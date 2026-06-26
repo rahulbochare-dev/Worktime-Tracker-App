@@ -17,7 +17,7 @@ const StartSessionModal = ({ visible, startFunc, cancelFunc }: props) => {
       const response = await getProjects()
     }
     fetchProjects()
-  }, [])
+  }, [visible])
 
   const onSelect = (id: number) => {
     console.log(id)
