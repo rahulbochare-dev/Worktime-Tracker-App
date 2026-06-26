@@ -14,7 +14,7 @@ type props = {
 const Project = ({ title = "Not Available", totalTime, timeAgo, id }: props) => {
   let projectInitial = ""
   const [visible, setVisible] = useState(false)
-  const {deleteProjects} = useProjectStore()
+  const {deleteProjects, getProjects} = useProjectStore()
 
   if (title == "Not Available") {
     projectInitial = "N/A"
@@ -24,7 +24,7 @@ const Project = ({ title = "Not Available", totalTime, timeAgo, id }: props) => 
 
   const handleDeleteProject = async () => {
     const response = await deleteProjects(id)
-    console.log(response)
+    const getProjectsResponse = await getProjects()
   }
 
   return (
