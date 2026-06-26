@@ -2,21 +2,29 @@ import Lucide from '@react-native-vector-icons/lucide'
 import { StyleSheet, Text, View } from 'react-native'
 import Menu from './Menu'
 import { useState } from 'react'
+import { useProjectStore } from '@/store/projects.store'
 
 type props = {
   title: String,
   totalTime: String | Number,
   timeAgo: String | Number,
+  id: number
 }
 
-const Project = ({ title = "Not Available", totalTime, timeAgo }: props) => {
+const Project = ({ title = "Not Available", totalTime, timeAgo, id }: props) => {
   let projectInitial = ""
   const [visible, setVisible] = useState(false)
+  const {deleteProjects} = useProjectStore()
 
   if (title == "Not Available") {
     projectInitial = "N/A"
   } else {
     projectInitial = title.charAt(0)
+  }
+
+  const handleDeleteProject = async () => {
+    const response = await deleteProjects(id)
+    console.log(response)
   }
 
   return (
@@ -32,7 +40,7 @@ const Project = ({ title = "Not Available", totalTime, timeAgo }: props) => {
         </View>
       </View>
       <Lucide name='more-vertical' size={24} color={"white"} onPress={() => setVisible(!visible)} />
-        <Menu visible={visible} onClose={() => setVisible(!visible)}/>
+        <Menu visible={visible} onClose={() => setVisible(!visible)} onDelete={handleDeleteProject}/>
     </View>
   )
 }

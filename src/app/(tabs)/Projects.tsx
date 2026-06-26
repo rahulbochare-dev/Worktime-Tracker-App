@@ -32,7 +32,7 @@ const Projects = () => {
       <ScrollView>
         {projects? null : <EmptyState icon='package' title='You have no projects' description='Once you create projects, they will appeare here.'/>}
         {projects?.map((items) => {
-          return <ProjectListItem title={items?.name} />
+          return <ProjectListItem title={items?.name} id={items?.id} key={items?.id}/>
         })}
       </ScrollView>
       <Button title={"Create New Project"} primary={true} width={220} disabled={false} func={() => setModalVisible(!modalVisible)}/>
