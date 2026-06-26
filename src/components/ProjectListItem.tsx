@@ -1,5 +1,7 @@
 import Lucide from '@react-native-vector-icons/lucide'
 import { StyleSheet, Text, View } from 'react-native'
+import ProjectMenuModal from './Menu'
+import { useState } from 'react'
 
 type props = {
   title: String,
@@ -7,10 +9,11 @@ type props = {
   timeAgo: String | Number,
 }
 
-const Project = ({title = "Not Available", totalTime, timeAgo}: props) => {
+const Project = ({ title = "Not Available", totalTime, timeAgo }: props) => {
   let projectInitial = ""
+  const [visible, setVisible] = useState(false)
 
-  if(title == "Not Available"){
+  if (title == "Not Available") {
     projectInitial = "N/A"
   } else {
     projectInitial = title.charAt(0)
@@ -28,7 +31,8 @@ const Project = ({title = "Not Available", totalTime, timeAgo}: props) => {
           <Text style={styles.projectDeatilsAgo}>{timeAgo || "N/A"}</Text>
         </View>
       </View>
-      <Lucide name='more-vertical' size={24} color={"white"}/>
+      <Lucide name='more-vertical' size={24} color={"white"} onPress={() => setVisible(!visible)} />
+        <ProjectMenuModal visible={visible} onClose={() => setVisible(!visible)}/>
     </View>
   )
 }
