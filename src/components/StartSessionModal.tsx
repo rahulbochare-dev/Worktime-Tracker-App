@@ -19,11 +19,6 @@ const StartSessionModal = ({ visible, startFunc, cancelFunc }: props) => {
     fetchProjects()
   }, [visible])
 
-  const onSelect = (id: number) => {
-    console.log(id)
-    cancelFunc()
-  }
-
   return (
     <Modal
       visible={visible}
@@ -34,7 +29,7 @@ const StartSessionModal = ({ visible, startFunc, cancelFunc }: props) => {
           <Text style={styles.titleText}>Select Project</Text>
           <ScrollView style={styles.listItemContainerMain}>
             {projects?.map((items) => {
-              return <Pressable style={styles.projectDeatils} key={items.id} onPress={()=> onSelect(items.id)}>
+              return <Pressable style={styles.projectDeatils} key={items.id} onPress={()=> startFunc(items.id)}>
                 <View style={styles.listItemContainer}>
                   <View style={styles.projectDeatilsIcon}>
                     <Text style={styles.projectDeatilsIconText}>{items.name.slice(0, 1).toUpperCase()}</Text>

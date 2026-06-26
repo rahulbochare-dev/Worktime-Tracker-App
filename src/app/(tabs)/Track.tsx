@@ -1,4 +1,5 @@
 import Button from '@/components/Button'
+import StartSessionModal from '@/components/StartSessionModal'
 import Lucide from '@react-native-vector-icons/lucide'
 import { useEffect, useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
@@ -10,6 +11,7 @@ const Track = () => {
   const [time, setTime] = useState(0)
   const [status, setStatus] = useState(null)
   const [isEnded, setIsEnded] = useState(null)
+  const [modalVisible, setModalVisible] = useState(false)
 
   const { hours, minutes, seconds } = convertFormat(time);
 
@@ -20,9 +22,14 @@ const Track = () => {
 
     setStatus(getStatus())
     setIsEnded(getIsEnded())
-    
+
     return () => clearInterval(interval)
   }, [])
+
+  const onSelect = (id: number) => {
+    console.log(id,"ihef")
+    setModalVisible(!modalVisible)
+  }
 
   const handleStart = () => {
     start()
@@ -51,7 +58,7 @@ const Track = () => {
     setStatus(getStatus())
     setIsEnded(getIsEnded())
   }
-  
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.headingContainer}>
@@ -66,7 +73,7 @@ const Track = () => {
             <Text style={styles.projectDeatilsHeading}>Practice Kanji</Text>
             <Text style={styles.projectDeatilsAgo}>Started: 33min ago</Text>
           </View>
-          <Lucide name='timer-reset' size={24} color={"white"} onPress={handleReset}/>
+          <Lucide name='timer-reset' size={24} color={"white"} onPress={handleReset} />
         </View>
         <View style={styles.trackTimerContainer}>
           <Text style={styles.timerText}>{`${hours}:${minutes}:${seconds}`}</Text>
@@ -77,19 +84,17 @@ const Track = () => {
           </View>
         </View>
         <View style={styles.buttonsContainer}>
-          <Button title={isEnded? "Start" : status? "Running" : time > 0? "Resume" : "Start"} primary={false} width={"48%"} disabled={status} func={handleResume}/>
-          {status? <Button title={"Pause"} primary={false} width={"48%"} disabled={false} func={handlePause}/> :
-          <Button title={"Pause"} primary={false} width={"48%"} disabled={true}/>
+          <Button title={isEnded ? "Start" : status ? "Running" : time > 0 ? "Resume" : "Start"} primary={false} width={"48%"} disabled={status} func={handleResume} />
+          {status ? <Button title={"Pause"} primary={false} width={"48%"} disabled={false} func={handlePause} /> :
+            <Button title={"Pause"} primary={false} width={"48%"} disabled={true} />
           }
-          <Button title={"End Session"} primary={false} width={"100%"} disabled={false} func={handleEnd}/>
+          <Button title={"End Session"} primary={false} width={"100%"} disabled={false} func={handleEnd} />
         </View>
       </View>
-      <View style={styles.notesContainer}>
-        <View style={styles.notesHeadingContainer}>
-          <Text style={styles.projectDeatilsHeading}>Notes</Text>
-          <Lucide name='plus' size={24} color={"white"} />
-        </View>
+      <View style={styles.startButtonContainer}>
+        <Button title={"Start new Session"} primary={true} width={214} disabled={false} func={() => setModalVisible(!modalVisible)}/>
       </View>
+      <StartSessionModal visible={modalVisible} cancelFunc={() => setModalVisible(!modalVisible)} startFunc={onSelect}/>
     </SafeAreaView>
   )
 }
@@ -195,14 +200,14 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     gap: 8
   },
-  notesContainer: {
+  startButtonContainer: {
     width: "100%",
     minHeight: 252,
-    marginTop: 12,
     paddingTop: 8,
     borderRadius: 16,
     borderTopWidth: 0.3,
     borderTopColor: "#464646",
+    justifyContent: "flex-end"
   },
   notesHeadingContainer: {
     width: "100%",

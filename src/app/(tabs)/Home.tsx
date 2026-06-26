@@ -22,8 +22,6 @@ const Home = () => {
       </View>
       <StreakCard/>
       <TodaysGoal/>
-      <OngoingSession func={() => setModalVisible(!modalVisible)}/>
-      <StartSessionModal visible={modalVisible} cancelFunc={() => setModalVisible(!modalVisible)}/>
     </SafeAreaView>
   )
 }
