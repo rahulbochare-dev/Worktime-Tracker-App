@@ -25,7 +25,7 @@ const Projects = () => {
       <View style={styles.headingContainer}>
         <View>
           <Text style={styles.todaysSummaryText}>My Projects</Text>
-          <Text style={styles.totalProjectText}>12 Projects</Text>
+          <Text style={styles.totalProjectText}>{projects.length} Projects</Text>
         </View>
         <Lucide name="search" color={"white"} size={24}/>
       </View>
