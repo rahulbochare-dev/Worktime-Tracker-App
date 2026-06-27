@@ -192,7 +192,8 @@ const styles = StyleSheet.create({
     fontFamily: "GeistMedium",
     fontWeight: "100",
     color: "white",
-    marginTop: 8
+    marginTop: 8,
+    fontVariant: ['tabular-nums']
   },
   trackTimerLableContainer: {
     width: "100%",
