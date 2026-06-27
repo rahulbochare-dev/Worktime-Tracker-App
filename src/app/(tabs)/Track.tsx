@@ -39,6 +39,10 @@ const Track = () => {
     setModalVisible(!modalVisible)
   }
 
+  const handleSubmitSession = async () => {
+    
+  }
+
   const handleStart = () => {
     start()
     setStatus(getStatus())
@@ -59,6 +63,7 @@ const Track = () => {
     end()
     setStatus(getStatus())
     setIsEnded(getIsEnded())
+    console.log(time)
   }
 
   const handleReset = () => {
