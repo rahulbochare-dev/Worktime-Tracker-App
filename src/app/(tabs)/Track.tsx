@@ -8,6 +8,7 @@ import { convertFormat } from '../../utils/convertFormat'
 import { end, getElapsedTime, getIsEnded, getStatus, pause, resetTimer, resume, start } from '../../utils/timer'
 import { useProjectStore } from '../../store/projects.store'
 import { useSessionStore } from '../../store/session.store'
+import { router } from 'expo-router'
 
 const Track = () => {
   const [time, setTime] = useState(0)
@@ -76,6 +77,10 @@ const Track = () => {
     setIsEnded(getIsEnded())
   }
 
+  const navigateSessionHistory = () => {
+    router.push("/(stack)/SessionHistory")
+  }
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.headingContainer}>
@@ -83,6 +88,7 @@ const Track = () => {
           <Text style={styles.todaysSummaryText}>Track Time</Text>
           <Text style={styles.totalProjectText}>Today's total: 4hr 33min</Text>
         </View>
+        <Lucide name='history' color={"white"} size={24} onPress={navigateSessionHistory}/>
       </View>
       <View style={styles.trackContainer}>
         <View style={styles.trackHeadingContainer}>
