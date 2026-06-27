@@ -1,5 +1,6 @@
 import Lucide from '@react-native-vector-icons/lucide'
 import { StyleSheet, Text, View } from 'react-native'
+import { formatSessionTime } from '../utils/formatSessionTime'
 
 type props = {
   projectName: string,
@@ -8,6 +9,8 @@ type props = {
 }
 
 const SessionHistoryListItem = ({projectName, totalTime, timeAgo}: props) => {
+  const formattedTime = formatSessionTime(totalTime)
+
   return (
     <View style={styles.container}>
       <View style={styles.timeAgoContainer}>
@@ -17,7 +20,7 @@ const SessionHistoryListItem = ({projectName, totalTime, timeAgo}: props) => {
       <View style={styles.detailsContainerMain}>
         <View style={styles.details}>
           <Text style={styles.projectNameText}>{projectName}</Text>
-          <Text style={styles.projectTimeText}>Total time: 3hr 44mins</Text>
+          <Text style={styles.projectTimeText}>Total time: {formattedTime}</Text>
         </View>
       <Lucide name='chevron-right' color={"white"} size={24} />
       </View>
