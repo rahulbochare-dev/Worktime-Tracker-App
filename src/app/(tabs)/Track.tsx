@@ -6,14 +6,16 @@ import { StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { convertFormat } from '../../utils/convertFormat'
 import { end, getElapsedTime, getIsEnded, getStatus, pause, resetTimer, resume, start } from '../../utils/timer'
-import { useProjectStore } from '@/store/projects.store'
+import { useProjectStore } from '../../store/projects.store'
+import { useSessionStore } from '../../store/session.store'
 
 const Track = () => {
   const [time, setTime] = useState(0)
   const [status, setStatus] = useState(null)
   const [isEnded, setIsEnded] = useState(null)
   const [modalVisible, setModalVisible] = useState(false)
-  const {projects} = useProjectStore()
+  const { projects } = useProjectStore()
+  const { createSession } = useSessionStore()
   const [currentProject, setCurrentProject] = useState(null)
 
   const { hours, minutes, seconds } = convertFormat(time);
@@ -39,8 +41,9 @@ const Track = () => {
     setModalVisible(!modalVisible)
   }
 
-  const handleSubmitSession = async () => {
-    
+  const handleSubmitSession = async (projectId: number, time: number) => {
+    const response = await createSession(projectId, time)
+    return response
   }
 
   const handleStart = () => {
@@ -59,11 +62,12 @@ const Track = () => {
     setIsEnded(getIsEnded())
   }
 
-  const handleEnd = () => {
+  const handleEnd = async () => {
     end()
     setStatus(getStatus())
     setIsEnded(getIsEnded())
-    console.log(time)
+
+    const response = await handleSubmitSession(currentProject?.id, time)
   }
 
   const handleReset = () => {
@@ -105,9 +109,9 @@ const Track = () => {
         </View>
       </View>
       <View style={styles.startButtonContainer}>
-        <Button title={"Start new Session"} primary={true} width={214} disabled={false} func={() => setModalVisible(!modalVisible)}/>
+        <Button title={"Start new Session"} primary={true} width={214} disabled={false} func={() => setModalVisible(!modalVisible)} />
       </View>
-      <StartSessionModal visible={modalVisible} cancelFunc={() => setModalVisible(!modalVisible)} startFunc={onSelect}/>
+      <StartSessionModal visible={modalVisible} cancelFunc={() => setModalVisible(!modalVisible)} startFunc={onSelect} />
     </SafeAreaView>
   )
 }

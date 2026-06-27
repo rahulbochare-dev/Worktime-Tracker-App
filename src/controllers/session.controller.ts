@@ -6,13 +6,13 @@ import { eq } from "drizzle-orm";
 export const createSession = async (projectId: number, time: number) => {
   let message = ""
   let success = true
-
+  
   if(!projectId || !time){
     message = "Cannot get project id or time!"
     success = false
     return
   }
-
+  
   const response = await createSessionQuery(projectId, time)
 
   const createdSession = await db.select().from(sessions).where(eq(sessions.id, Number(response.lastInsertRowId)))
