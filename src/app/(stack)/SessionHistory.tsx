@@ -24,7 +24,9 @@ const SessionHistory = () => {
         </View>
       </View>
       <ScrollView style={styles.listScrollContainer}>
-        <SessionHistoryListItem/>
+        {sessions?.map((item) => {
+          return <SessionHistoryListItem projectName={item?.project.name}/>
+        })}
       </ScrollView>
     </SafeAreaView>
   )

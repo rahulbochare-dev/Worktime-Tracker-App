@@ -16,9 +16,9 @@ export const createSessionQuery = async (projectId: number, time: number) => {
 export const getAllSessionQuery = async () => {
   const response = await db.query.sessions.findMany({
     with: {
-      projects: true
+      project: true
     }
   })
-  
+
   return response;
 }

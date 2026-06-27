@@ -16,7 +16,7 @@ const SessionHistoryListItem = ({projectName, totalTime, timeAgo}: props) => {
       <View style={styles.badge}></View>
       <View style={styles.detailsContainerMain}>
         <View style={styles.details}>
-          <Text style={styles.projectNameText}>Study Drizzle</Text>
+          <Text style={styles.projectNameText}>{projectName}</Text>
           <Text style={styles.projectTimeText}>Total time: 3hr 44mins</Text>
         </View>
       <Lucide name='chevron-right' color={"white"} size={24} />
