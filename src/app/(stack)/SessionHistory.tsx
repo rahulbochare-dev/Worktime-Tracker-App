@@ -6,6 +6,16 @@ import { useSessionStore } from '../../store/session.store'
 import SessionHistoryListItem from '@/components/SessionHistoryListItem'
 
 const SessionHistory = () => {
+  const {sessions, getAllSessions} = useSessionStore()
+
+  useEffect(() => {
+    const getSessions = async () => {
+      const response = await getAllSessions()
+      console.log(sessions)
+    }
+    getSessions()
+  }, [])
+  
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.headingContainer}>
@@ -15,14 +25,7 @@ const SessionHistory = () => {
         </View>
       </View>
       <ScrollView style={styles.listScrollContainer}>
-        <SessionHistoryListItem />
-        <SessionHistoryListItem />
-        <SessionHistoryListItem />
-        <SessionHistoryListItem />
-        <SessionHistoryListItem />
-        <SessionHistoryListItem />
-        <SessionHistoryListItem />
-        <SessionHistoryListItem />
+        <SessionHistoryListItem/>
       </ScrollView>
     </SafeAreaView>
   )

@@ -19,7 +19,7 @@ export const useSessionStore = create((set) => ({
   getAllSessions: async () => {
     try {
       const response = await getAllSessions()
-      set({ sessions: response ,loading: false })
+      set({ sessions: response?.response ,loading: false })
       return response
     } catch (error) {
       set({ error: error })
