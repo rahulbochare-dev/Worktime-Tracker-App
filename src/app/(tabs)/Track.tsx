@@ -6,12 +6,15 @@ import { StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { convertFormat } from '../../utils/convertFormat'
 import { end, getElapsedTime, getIsEnded, getStatus, pause, resetTimer, resume, start } from '../../utils/timer'
+import { useProjectStore } from '@/store/projects.store'
 
 const Track = () => {
   const [time, setTime] = useState(0)
   const [status, setStatus] = useState(null)
   const [isEnded, setIsEnded] = useState(null)
   const [modalVisible, setModalVisible] = useState(false)
+  const {projects} = useProjectStore()
+  const [currentProject, setCurrentProject] = useState(null)
 
   const { hours, minutes, seconds } = convertFormat(time);
 
@@ -26,8 +29,13 @@ const Track = () => {
     return () => clearInterval(interval)
   }, [])
 
-  const onSelect = (id: number) => {
-    console.log(id,"ihef")
+  const findProject = (id: number) => {
+    return projects?.find((project) => project.id === id);
+  }
+
+  const onSelect = async (id: number) => {
+    const result = await findProject(id)
+    setCurrentProject(result)
     setModalVisible(!modalVisible)
   }
 
@@ -70,7 +78,7 @@ const Track = () => {
       <View style={styles.trackContainer}>
         <View style={styles.trackHeadingContainer}>
           <View style={styles.trackHeadingContainerLeft}>
-            <Text style={styles.projectDeatilsHeading}>Practice Kanji</Text>
+            <Text style={styles.projectDeatilsHeading}>{currentProject?.name}</Text>
             <Text style={styles.projectDeatilsAgo}>Started: 33min ago</Text>
           </View>
           <Lucide name='timer-reset' size={24} color={"white"} onPress={handleReset} />
