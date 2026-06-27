@@ -6,12 +6,12 @@ import { useProjectStore } from '@/store/projects.store'
 
 type props = {
   title: String,
-  totalTime: String | Number,
-  timeAgo: String | Number,
+  description: String,
+  lastTracked: String | Number,
   id: number
 }
 
-const Project = ({ title = "Not Available", totalTime, timeAgo, id }: props) => {
+const Project = ({ title = "Not Available", description, lastTracked, id }: props) => {
   let projectInitial = ""
   const [visible, setVisible] = useState(false)
   const {deleteProjects, getProjects} = useProjectStore()
@@ -33,10 +33,11 @@ const Project = ({ title = "Not Available", totalTime, timeAgo, id }: props) => 
         <View style={styles.projectDeatilsIcon}>
           <Text style={styles.projectDeatilsIconText}>{projectInitial}</Text>
         </View>
-        <View>
+        <View style={styles.textContainer}>
           <Text style={styles.projectDeatilsHeadings}>{title || "Title not Available"}</Text>
-          <Text style={styles.projectDeatilsHeadings}>Total time: {totalTime || "N/A"}</Text>
-          <Text style={styles.projectDeatilsAgo}>{timeAgo || "N/A"}</Text>
+          <Text style={styles.projectDescriptionHeadings} numberOfLines={1}
+  ellipsizeMode="tail">{description}</Text>
+          <Text style={styles.projectDescriptionHeadings}>{lastTracked || "N/A"}</Text>
         </View>
       </View>
       <Lucide name='more-vertical' size={24} color={"white"} onPress={() => setVisible(!visible)} />
@@ -54,14 +55,14 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.3,
     borderBottomColor: "#464646",
     flexDirection: "row",
-    alignItems: "center"
+    alignItems: "center",
   },
   projectDeatils: {
     height: '100%',
     width: "88%",
     flexDirection: "row",
     alignItems: "center",
-    gap: 16
+    gap: 16,
   },
   projectDeatilsIcon: {
     height: 48,
@@ -83,10 +84,14 @@ const styles = StyleSheet.create({
     fontWeight: "100",
     color: "white",
   },
-  projectDeatilsAgo: {
+  projectDescriptionHeadings: {
     fontSize: 14,
     fontFamily: "GeistMedium",
     fontWeight: "100",
     color: "#828282",
   },
+  textContainer: {
+    flex: 1,
+    paddingRight: 10
+  }
 })
