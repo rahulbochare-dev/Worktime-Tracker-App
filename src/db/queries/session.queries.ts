@@ -11,3 +11,8 @@ export const createSessionQuery = async (projectId: number, time: number) => {
 
   return response;
 }
+
+export const getAllSessionQuery = async () => {
+  const response = await db.select().from(sessions)
+  return response;
+}
