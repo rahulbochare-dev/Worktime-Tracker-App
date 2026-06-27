@@ -1,3 +1,4 @@
+import { relations } from "drizzle-orm"
 import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core"
 
 export const projects = sqliteTable("projects", {
@@ -23,3 +24,10 @@ export const sessions = sqliteTable("sessions", {
   createdAt: integer("created_at", {mode: "timestamp_ms"}).notNull(),
   updatedAt: integer("updated_at", {mode: "timestamp_ms"}).notNull()
 })
+
+export const sessionRelations = relations(sessions, ({one}) => ({
+  projects: one(projects, {
+    fields: [sessions.projectId],
+    references: [projects.id]
+  })
+}))

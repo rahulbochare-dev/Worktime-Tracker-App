@@ -1,5 +1,6 @@
+import { eq } from "drizzle-orm";
 import { db } from "../index";
-import { sessions } from "../schema";
+import { projects, sessions } from "../schema";
 
 export const createSessionQuery = async (projectId: number, time: number) => {
   const response = await db.insert(sessions).values({
@@ -13,6 +14,11 @@ export const createSessionQuery = async (projectId: number, time: number) => {
 }
 
 export const getAllSessionQuery = async () => {
-  const response = await db.select().from(sessions)
+  const response = await db.query.sessions.findMany({
+    with: {
+      projects: true
+    }
+  })
+  
   return response;
 }

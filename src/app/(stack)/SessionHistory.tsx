@@ -11,7 +11,6 @@ const SessionHistory = () => {
   useEffect(() => {
     const getSessions = async () => {
       const response = await getAllSessions()
-      console.log(sessions)
     }
     getSessions()
   }, [])
