@@ -10,7 +10,7 @@ import { useState, useEffect } from 'react'
 
 const Projects = () => {
   const [modalVisible, setModalVisible] = useState(false)
-  const {projects, getProjects} = useProjectStore()
+  const { projects, getProjects } = useProjectStore()
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -18,7 +18,7 @@ const Projects = () => {
     }
     fetchProjects()
   }, [modalVisible])
-  
+
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -27,16 +27,20 @@ const Projects = () => {
           <Text style={styles.todaysSummaryText}>My Projects</Text>
           <Text style={styles.totalProjectText}>{projects?.length} Projects</Text>
         </View>
-        <Lucide name="search" color={"white"} size={24}/>
+        <Lucide name="search" color={"white"} size={24} />
       </View>
       <ScrollView>
-        {projects? null : <EmptyState icon='package' title='You have no projects' description='Once you create projects, they will appeare here.'/>}
+        {!projects || projects.length === 0 ? (
+          <EmptyState
+            icon="package"
+            title="You have no projects"
+            description="Once you create projects, they will appear here." />) : null}
         {projects?.map((items) => {
-          return <ProjectListItem title={items?.name} description={items?.description} id={items?.id} key={items?.id}/>
+          return <ProjectListItem title={items?.name} description={items?.description} id={items?.id} key={items?.id} />
         })}
       </ScrollView>
-      <Button title={"Create New Project"} primary={true} width={220} disabled={false} func={() => setModalVisible(!modalVisible)}/>
-      <CreateProject visible={modalVisible} cancelFunc={() => setModalVisible(!modalVisible)} toggleModal={setModalVisible}/>
+      <Button title={"Create New Project"} primary={true} width={220} disabled={false} func={() => setModalVisible(!modalVisible)} />
+      <CreateProject visible={modalVisible} cancelFunc={() => setModalVisible(!modalVisible)} toggleModal={setModalVisible} />
     </SafeAreaView>
   )
 }
