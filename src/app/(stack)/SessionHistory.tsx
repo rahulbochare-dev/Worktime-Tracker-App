@@ -1,8 +1,9 @@
 import Lucide from '@react-native-vector-icons/lucide'
 import { useEffect, useState } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useSessionStore } from '../../store/session.store'
+import SessionHistoryListItem from '@/components/SessionHistoryListItem'
 
 const SessionHistory = () => {
   return (
@@ -13,6 +14,16 @@ const SessionHistory = () => {
           <Text style={styles.headingSecond}>342 Sessions</Text>
         </View>
       </View>
+      <ScrollView style={styles.listScrollContainer}>
+        <SessionHistoryListItem />
+        <SessionHistoryListItem />
+        <SessionHistoryListItem />
+        <SessionHistoryListItem />
+        <SessionHistoryListItem />
+        <SessionHistoryListItem />
+        <SessionHistoryListItem />
+        <SessionHistoryListItem />
+      </ScrollView>
     </SafeAreaView>
   )
 }
@@ -48,5 +59,9 @@ const styles = StyleSheet.create({
     fontFamily: "GeistMedium",
     fontWeight: "100",
     color: "#828282",
+  },
+  listScrollContainer: {
+    width: "100%",
+    height: "auto",
   }
 })
