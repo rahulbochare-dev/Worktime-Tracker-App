@@ -1,6 +1,7 @@
 import Lucide from '@react-native-vector-icons/lucide'
 import { StyleSheet, Text, View } from 'react-native'
 import { formatSessionTime } from '../utils/formatSessionTime'
+import { formatTimeAgo } from '../utils/formatTimeAgo'
 
 type props = {
   projectName: string,
@@ -10,11 +11,12 @@ type props = {
 
 const SessionHistoryListItem = ({projectName, totalTime, timeAgo}: props) => {
   const formattedTime = formatSessionTime(totalTime)
+  const formattedTimeAgo = formatTimeAgo(timeAgo)
 
   return (
     <View style={styles.container}>
       <View style={styles.timeAgoContainer}>
-        <Text style={styles.timeAgoText}>33 mins ago</Text>
+        <Text style={styles.timeAgoText}>{formattedTimeAgo}</Text>
       </View>
       <View style={styles.badge}></View>
       <View style={styles.detailsContainerMain}>

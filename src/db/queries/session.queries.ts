@@ -1,4 +1,4 @@
-import { eq } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 import { db } from "../index";
 import { projects, sessions } from "../schema";
 
@@ -17,7 +17,8 @@ export const getAllSessionQuery = async () => {
   const response = await db.query.sessions.findMany({
     with: {
       project: true
-    }
+    },
+    orderBy: [desc(sessions.createdAt)]
   })
 
   return response;
