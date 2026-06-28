@@ -5,6 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { useSessionStore } from '../../store/session.store'
 import SessionHistoryListItem from '@/components/SessionHistoryListItem'
 import EmptyState from '@/components/EmptyState'
+import { router } from 'expo-router'
 
 const SessionHistory = () => {
   const { sessions, getAllSessions } = useSessionStore()
@@ -15,6 +16,10 @@ const SessionHistory = () => {
     }
     getSessions()
   }, [])
+
+  const navigateSessionDetails = () => {
+    router.push("/(stack)/SessionDetails")
+  }
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -31,7 +36,7 @@ const SessionHistory = () => {
             title={`You don't have any sessions.`}
             description='Once you start sessions, they will appear here.' /> : null}
         {sessions?.map((item) => {
-          return <SessionHistoryListItem projectName={item?.project.name} totalTime={item?.totalTime} key={item?.id} timeAgo={item?.createdAt}/>
+          return <SessionHistoryListItem projectName={item?.project.name} totalTime={item?.totalTime} key={item?.id} timeAgo={item?.createdAt} onPress={navigateSessionDetails}/>
         })}
       </ScrollView>
     </SafeAreaView>
