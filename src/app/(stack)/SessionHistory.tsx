@@ -4,9 +4,10 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useSessionStore } from '../../store/session.store'
 import SessionHistoryListItem from '@/components/SessionHistoryListItem'
+import EmptyState from '@/components/EmptyState'
 
 const SessionHistory = () => {
-  const {sessions, getAllSessions} = useSessionStore()
+  const { sessions, getAllSessions } = useSessionStore()
 
   useEffect(() => {
     const getSessions = async () => {
@@ -14,7 +15,7 @@ const SessionHistory = () => {
     }
     getSessions()
   }, [])
-  
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.headingContainer}>
@@ -24,6 +25,11 @@ const SessionHistory = () => {
         </View>
       </View>
       <ScrollView style={styles.listScrollContainer}>
+        {!sessions || sessions?.length === 0 ?
+          <EmptyState
+            icon='package'
+            title={`You don't have any sessions.`}
+            description='Once you start sessions, they will appear here.' /> : null}
         {sessions?.map((item) => {
           return <SessionHistoryListItem projectName={item?.project.name} totalTime={item?.totalTime} key={item?.id} timeAgo={item?.createdAt}/>
         })}
