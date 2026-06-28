@@ -9,6 +9,7 @@ import { router } from 'expo-router'
 
 const SessionHistory = () => {
   const { sessions, getAllSessions } = useSessionStore()
+  const { sessionId, setSessionId } = useState()
 
   useEffect(() => {
     const getSessions = async () => {
@@ -17,8 +18,11 @@ const SessionHistory = () => {
     getSessions()
   }, [])
 
-  const navigateSessionDetails = () => {
-    router.push("/(stack)/SessionDetails")
+  const navigateSessionDetails = (id: number) => {
+    router.push({
+      pathname: "/(stack)/SessionDetails",
+      params: { id: String(id) },
+    })
   }
 
   return (
@@ -36,7 +40,7 @@ const SessionHistory = () => {
             title={`You don't have any sessions.`}
             description='Once you start sessions, they will appear here.' /> : null}
         {sessions?.map((item) => {
-          return <SessionHistoryListItem projectName={item?.project.name} totalTime={item?.totalTime} key={item?.id} timeAgo={item?.createdAt} onPress={navigateSessionDetails}/>
+          return <SessionHistoryListItem projectName={item?.project.name} totalTime={item?.totalTime} key={item?.id} id={item?.id} timeAgo={item?.createdAt} onPress={navigateSessionDetails}/>
         })}
       </ScrollView>
     </SafeAreaView>

@@ -7,15 +7,16 @@ type props = {
   projectName: string,
   totalTime: string,
   timeAgo: string,
+  id: number,
   onPress: Function
 }
 
-const SessionHistoryListItem = ({projectName, totalTime, timeAgo, onPress}: props) => {
+const SessionHistoryListItem = ({projectName, totalTime, timeAgo, id, onPress}: props) => {
   const formattedTime = formatSessionTime(totalTime)
   const formattedTimeAgo = formatTimeAgo(timeAgo)
 
   return (
-    <Pressable style={styles.container} onPress={onPress}>
+    <Pressable style={styles.container} onPress={() => onPress(id)}>
       <View style={styles.timeAgoContainer}>
         <Text style={styles.timeAgoText}>{formattedTimeAgo}</Text>
       </View>

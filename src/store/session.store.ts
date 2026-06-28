@@ -30,7 +30,7 @@ export const useSessionStore = create((set) => ({
   getSessionDetails: async (id: string) => {
     try {
       const response = await getSessionDetails(id)
-      set({ sessionDetails: response, loading: false })
+      set({ sessionDetails: response?.response, loading: false })
       return response
     } catch (error) {
       set({ error: error })
