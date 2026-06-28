@@ -1,3 +1,4 @@
+import MainStatCard from '@/components/MainStatCard'
 import { StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
@@ -9,6 +10,10 @@ const SessionDetails = () => {
           <Text style={styles.heading}>Session Details</Text>
           <Text style={styles.headingSecond}>Study Drizzle</Text>
         </View>
+      </View>
+      <MainStatCard icon='target' iconColor='orange' title='Total time' time='3hrs 44mins' insight='Focused for 3hrs 44mins'/>
+      <View style={styles.fromToContainer}>
+
       </View>
     </SafeAreaView>
   )
@@ -46,4 +51,9 @@ const styles = StyleSheet.create({
     fontWeight: "100",
     color: "#828282",
   },
+  fromToContainer: {
+    width: "100%",
+    height: "20%",
+    backgroundColor: "red"
+  }
 })

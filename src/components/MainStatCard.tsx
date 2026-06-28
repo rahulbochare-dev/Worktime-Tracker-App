@@ -1,14 +1,22 @@
 import { StyleSheet, Text, View } from 'react-native'
 import { Lucide } from '@react-native-vector-icons/lucide'
 
-const MainStatCard = () => {
+type props = {
+  title: string,
+  time: string | number,
+  icon: string,
+  insight: string,
+  iconColor: string
+}
+
+const MainStatCard = ({title, time, icon, insight, iconColor}: props) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.statHeading}>Worked so Far</Text>
-      <Text style={styles.goalNumberText}>243hr 33min</Text>
+      <Text style={styles.statHeading}>{title}</Text>
+      <Text style={styles.goalNumberText}>{time}</Text>
       <View style={styles.tipContainer}>
-        <Lucide name='trending-up' size={18} color={"#11FF00"} />
-        <Text style={styles.tipText}>+122 hrs in last month</Text>
+        <Lucide name={icon} size={18} color={iconColor} />
+        <Text style={styles.tipText}>{insight}</Text>
       </View>
     </View>
   )
@@ -24,7 +32,8 @@ const styles = StyleSheet.create({
     marginTop: 14,
     borderRadius: 16,
     alignSelf: "center",
-    paddingHorizontal: 18
+    paddingHorizontal: 18,
+    paddingVertical: 10
   },
   statHeading: {
     fontSize: 16,
