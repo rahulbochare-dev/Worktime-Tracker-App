@@ -12,6 +12,7 @@ import { router } from 'expo-router'
 
 const Track = () => {
   const [time, setTime] = useState(0)
+  const [from, setFrom] = useState(null)
   const [status, setStatus] = useState(null)
   const [isEnded, setIsEnded] = useState(null)
   const [modalVisible, setModalVisible] = useState(false)
@@ -42,8 +43,8 @@ const Track = () => {
     setModalVisible(!modalVisible)
   }
 
-  const handleSubmitSession = async (projectId: number, time: number) => {
-    const response = await createSession(projectId, time)
+  const handleSubmitSession = async (projectId: number, time: number, from: number) => {
+    const response = await createSession(projectId, time, from)
     return response
   }
 
@@ -61,6 +62,7 @@ const Track = () => {
     resume()
     setStatus(getStatus())
     setIsEnded(getIsEnded())
+    setFrom(new Date())
   }
 
   const handleEnd = async () => {
@@ -68,7 +70,7 @@ const Track = () => {
     setStatus(getStatus())
     setIsEnded(getIsEnded())
 
-    const response = await handleSubmitSession(currentProject?.id, time)
+    const response = await handleSubmitSession(currentProject?.id, time, from)
   }
 
   const handleReset = () => {

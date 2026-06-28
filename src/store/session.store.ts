@@ -6,9 +6,9 @@ export const useSessionStore = create((set) => ({
   loading: true,
   error: null,
 
-  createSession: async (projectId: number, time: number) => {
+  createSession: async (projectId: number, time: number, from: number) => {
     try {
-      const response = await createSession(projectId, time)
+      const response = await createSession(projectId, time, from)
       set({ loading: false })
       return response
     } catch (error) {

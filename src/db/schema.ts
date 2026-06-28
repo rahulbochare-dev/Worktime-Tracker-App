@@ -20,7 +20,9 @@ export const user = sqliteTable("user", {
 export const sessions = sqliteTable("sessions", {
   id: integer("id").primaryKey({ autoIncrement: true }),
   projectId: integer("project_id").references(() => projects.id),
-  totalTime: integer("total_Time").notNull(),
+  totalTime: integer("total_time").notNull(),
+  startTime: integer("start_time", {mode: "timestamp_ms"}).notNull(),
+  endTime: integer("end_time", {mode: "timestamp_ms"}).notNull(),
   createdAt: integer("created_at", {mode: "timestamp_ms"}).notNull(),
   updatedAt: integer("updated_at", {mode: "timestamp_ms"}).notNull()
 })
