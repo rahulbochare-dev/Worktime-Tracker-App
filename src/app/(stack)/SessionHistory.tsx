@@ -20,7 +20,7 @@ const SessionHistory = () => {
       <View style={styles.headingContainer}>
         <View>
           <Text style={styles.heading}>Session History</Text>
-          <Text style={styles.headingSecond}>342 Sessions</Text>
+          <Text style={styles.headingSecond}>{sessions?.length} Sessions</Text>
         </View>
       </View>
       <ScrollView style={styles.listScrollContainer}>
