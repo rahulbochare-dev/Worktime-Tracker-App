@@ -1,4 +1,4 @@
-import { createSessionQuery, getAllSessionQuery } from "../db/queries/session.queries";
+import { createSessionQuery, getAllSessionQuery, getSessionDetailsQuery } from "../db/queries/session.queries";
 import { db } from "../db/index";
 import { sessions } from "@/db/schema";
 import { eq } from "drizzle-orm";
@@ -50,6 +50,25 @@ export const getAllSessions = async () => {
   return ({
     response,
     message: "Session fetched successfully",
+    success: true,
+})
+}
+
+export const getSessionDetails = async (id: string) => {
+  let message = ""
+  let success = true
+  
+  const response = await getSessionDetailsQuery(id)
+
+  if(!response){
+    message = "There is a problem while fetching session details!"
+    success = false
+    return
+  }
+
+  return ({
+    response,
+    message: "Session details fetched successfully",
     success: true,
 })
 }

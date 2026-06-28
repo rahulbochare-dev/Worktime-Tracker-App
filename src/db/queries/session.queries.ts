@@ -25,3 +25,14 @@ export const getAllSessionQuery = async () => {
 
   return response;
 }
+
+export const getSessionDetailsQuery = async (id: string) => {
+  const response = await db.query.sessions.findFirst({
+    where: eq(sessions.id, id),
+    with: {
+      project: true
+    }
+  })
+
+  return response;
+}
