@@ -1,5 +1,6 @@
 import Lucide from '@react-native-vector-icons/lucide'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Animated } from 'react-native'
+import { useRef, useEffect } from 'react'
 
 type props = {
   varient: string,
@@ -7,16 +8,85 @@ type props = {
   messageSecondary: string,
 }
 
-const Toast = ({varient, message, messageSecondary}: props) => {
+const Toast = ({ varient, message, messageSecondary }: props) => {
+  const translateY = useRef(new Animated.Value(40)).current;
+  const opacity = useRef(new Animated.Value(0)).current;
+  const scale = useRef(new Animated.Value(0.9)).current;
+
+  const hideAnimation = (onComplete?: () => void) => {
+    Animated.parallel([
+      Animated.timing(opacity, {
+        toValue: 0,
+        duration: 220,
+        useNativeDriver: true,
+      }),
+  
+      Animated.timing(translateY, {
+        toValue: 40,
+        duration: 220,
+        useNativeDriver: true,
+      }),
+  
+      Animated.timing(scale, {
+        toValue: 0.9,
+        duration: 220,
+        useNativeDriver: true,
+      }),
+    ]).start(() => {
+      onComplete?.();
+    });
+  };
+
+  useEffect(() => {
+    translateY.setValue(40);
+    opacity.setValue(0);
+    scale.setValue(0.9);
+  
+    Animated.parallel([
+      Animated.timing(opacity, {
+        toValue: 1,
+        duration: 250,
+        useNativeDriver: true,
+      }),
+  
+      Animated.spring(translateY, {
+        toValue: 0,
+        friction: 8,
+        tension: 80,
+        useNativeDriver: true,
+      }),
+  
+      Animated.spring(scale, {
+        toValue: 1,
+        friction: 8,
+        tension: 80,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  
+    const timer = setTimeout(() => {
+      hideAnimation(() => {
+      });
+    }, 3000);
+  
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <View style={[varient == "success" ? styles.container : styles.containerError]}>
-      {varient == "success"? <Lucide name='check-circle-2' size={24} color={"#14C100"}/> :
-      <Lucide name='x-circle' size={24} color={"#D50000"}/>}
+    <Animated.View style={[varient == "success" ? styles.container : styles.containerError, {
+      opacity,
+      transform: [
+        { translateY },
+        { scale },
+      ],
+    },]}>
+      {varient == "success" ? <Lucide name='check-circle-2' size={24} color={"#14C100"} /> :
+        <Lucide name='x-circle' size={24} color={"#D50000"} />}
       <View>
         <Text style={styles.textTop}>{message}</Text>
         {messageSecondary && <Text style={styles.textBottom}>{messageSecondary}</Text>}
       </View>
-    </View>
+    </Animated.View>
   )
 }
 
