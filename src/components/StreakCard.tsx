@@ -10,7 +10,7 @@ const StreakCard = () => {
                     <Text style={styles.currentStreakNumberText}>23 <Text style={styles.currentStreakNumberDaysText}>Days</Text></Text>
                 </View>
                 <View style={styles.streakCardIconContainer}>
-                    <Image width={34} src='src/assets/burn.png' />
+                <Text style={styles.streakCardIcon}>🔥</Text>
                 </View>
             </View>
             <View style={styles.streakCardDaysContainer}>
@@ -68,6 +68,11 @@ const styles = StyleSheet.create({
         width: "30%",
         borderBottomWidth: 0.3,
         borderBottomColor: "#464646",
+        justifyContent: "center",
+        alignItems: "flex-end"
+    },
+    streakCardIcon: {
+        fontSize: 34,
     },
     streakCardDaysContainer: {
         height: 60,
