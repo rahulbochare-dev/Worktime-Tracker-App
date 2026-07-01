@@ -26,7 +26,6 @@ const Project = ({ title = "Not Available", description, lastTracked, id }: prop
 
   const handleDeleteProject = async () => {
     const response = await deleteProjects(id)
-    console.log(response)
     if(response?.success){
       showToast({
         message: response?.message,

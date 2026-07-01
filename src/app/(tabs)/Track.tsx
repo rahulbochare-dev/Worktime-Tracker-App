@@ -9,6 +9,7 @@ import { convertFormat } from '../../utils/convertFormat'
 import { end, getElapsedTime, getIsEnded, getStatus, pause, resetTimer, resume, start } from '../../utils/timer'
 import { useProjectStore } from '../../store/projects.store'
 import { useSessionStore } from '../../store/session.store'
+import { useToast } from "@/hooks/useToast";
 import { router } from 'expo-router'
 
 const Track = () => {
@@ -20,14 +21,8 @@ const Track = () => {
   const { projects } = useProjectStore()
   const { createSession } = useSessionStore()
   const [currentProject, setCurrentProject] = useState(null)
-
-  const { hours, minutes, seconds } = convertFormat(time);
-
-  const [toastConfig, setToastConfig] = useState({
-    showToast: false,
-    message: "",
-    messageSecondary: ""
-  })
+  const { hours, minutes, seconds } = convertFormat(time)
+  const { showToast } = useToast()
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -52,11 +47,18 @@ const Track = () => {
 
   const handleSubmitSession = async (projectId: number, time: number, from: number) => {
     const response = await createSession(projectId, time, from)
-    setToastConfig({
-      showToast: true,
-      message: response?.message,
-      messageSecondary: ""
-    })
+    if(response?.success){
+      showToast({
+        message: response?.message,
+        messageSecondary: `Session ID: #${response?.response.lastInsertRowId}`,
+        variant: "success",
+      })
+    } else {
+      showToast({
+        message: response?.message,
+        variant: "error",
+      })
+    }
     return response
   }
 
@@ -132,7 +134,6 @@ const Track = () => {
         <Button title={"Start new Session"} primary={true} width={214} disabled={false} func={() => setModalVisible(!modalVisible)} />
       </View>
       <StartSessionModal visible={modalVisible} cancelFunc={() => setModalVisible(!modalVisible)} startFunc={onSelect} />
-      {toastConfig.showToast && <Toast message={toastConfig?.message} varient='success' messageSecondary=''/>}
     </SafeAreaView>
   )
 }
