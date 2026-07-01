@@ -89,7 +89,7 @@ const SessionDetails = () => {
         </View>
       </View>
       <View style={styles.buttonConatiner}>
-        <Button />
+        <Button title={"Delete Session"} destructive width={"90%"} disabled={false} />
       </View>
     </SafeAreaView>
   )
