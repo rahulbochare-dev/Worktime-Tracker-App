@@ -5,70 +5,73 @@ import { eq } from "drizzle-orm";
 
 export const createSession = async (projectId: number, time: number, from: number) => {
   try {
-    let message = ""
-    let success = true    
-    
-    if(!projectId || !time){
-      message = "Cannot get project id or time!"
-      success = false
-      return
+    if (!projectId || !time) {
+      return {
+        message: "Cannot get project id or time!",
+        success: false
+      }
     }
-    
+
     const response = await createSessionQuery(projectId, time, from)
-  
+
     const createdSession = await db.select().from(sessions).where(eq(sessions.id, Number(response.lastInsertRowId)))
-  
-    if(!response){
-      message = "There is a problem while creating session!"
-      success = false
-      return
+
+    if (!response) {
+      return {
+        message: "There is a problem while creating session!",
+        success: false
+      }
     }
-  
+
     return ({
       response,
-      message: "Session created successfully",
+      message: "Session created successfully.",
       success: true,
       createdSession: createdSession[0]
-  })
+    })
   } catch (error) {
     console.log(error)
   }
 }
 
 export const getAllSessions = async () => {
-  let message = ""
-  let success = true
-  
-  const response = await getAllSessionQuery()
+  try {
+    const response = await getAllSessionQuery()
 
-  if(!response){
-    message = "There is a problem while fetching sessions!"
-    success = false
-    return
+    if (!response) {
+      return {
+        message: "There is a problem while fetching sessions!",
+        success: false
+      }
+    }
+
+    return ({
+      response,
+      message: "Session fetched successfully.",
+      success: true,
+    })
+  } catch (error) {
+    console.log(error)
   }
-
-  return ({
-    response,
-    message: "Session fetched successfully",
-    success: true,
-})
 }
 
 export const getSessionDetails = async (id: string) => {
-  let message = ""
-  let success = true
-  
-  const response = await getSessionDetailsQuery(id)
+  try {
+    const response = await getSessionDetailsQuery(id)
 
-  if(!response){
-    message = "There is a problem while fetching session details!"
-    success = false
-    return
+    if (!response) {
+      return {
+        message: "There is a problem while fetching session details!",
+        success: false
+      }
+    }
+
+    return ({
+      response,
+      message: "Session details fetched successfully.",
+      success: true,
+    })
+  } catch (error) {
+    console.log(error)
   }
-
-  return ({
-    response,
-    message: "Session details fetched successfully",
-    success: true,
-})
 }
