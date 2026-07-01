@@ -1,5 +1,5 @@
 import Lucide from '@react-native-vector-icons/lucide'
-import { StyleSheet, Text, View, Animated, Modal } from 'react-native'
+import { StyleSheet, Text, View, Animated } from 'react-native'
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useRef, useEffect } from 'react'
 
@@ -73,31 +73,30 @@ const Toast = ({ varient, message, messageSecondary, onHide }: props) => {
   }, []);
 
   return (
-    <Modal
-      visible
-      transparent
-      animationType="none"
-      statusBarTranslucent
-    >
-      <Animated.View pointerEvents="none" style={[varient == "success" ? styles.container : styles.containerError,
-      {
-        bottom: insets.bottom + 50,
-      }, {
-        opacity,
-        transform: [
-          { translateY },
-          { scale },
-        ],
-      },]}>
-        {varient == "success" ? <Lucide name='check-circle-2' size={24} color={"#14C100"} /> :
-          <Lucide name='x-circle' size={24} color={"#D50000"} />}
-        <View style={{ flex: 1, paddingRight: 12 }}>
-          <Text numberOfLines={2}
-            ellipsizeMode="tail" style={styles.textTop}>{message}</Text>
-          {messageSecondary && <Text style={styles.textBottom}>{messageSecondary}</Text>}
-        </View>
-      </Animated.View>
-    </Modal>
+    <Animated.View
+      pointerEvents="none"
+      style={[
+        varient == "success" ? styles.container : styles.containerError,
+        {
+          bottom: insets.bottom + 50,
+        },
+        {opacity,
+          transform: [
+            { translateY },
+            { scale },
+          ],
+        },
+      ]} >
+      {varient == "success" ? <Lucide name='check-circle-2' size={24} color={"#14C100"} /> :
+        <Lucide name='x-circle' size={24} color={"#D50000"} />}
+
+      <View style={{ flex: 1, paddingRight: 12 }}>
+        <Text numberOfLines={2}
+          ellipsizeMode="tail" style={styles.textTop}>{message}</Text>
+
+        {messageSecondary && <Text style={styles.textBottom}>{messageSecondary}</Text>}
+      </View>
+    </Animated.View>
   )
 }
 
