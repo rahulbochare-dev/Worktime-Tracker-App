@@ -55,7 +55,7 @@ export default Stats
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#13131A",
+    backgroundColor: "#0d0d0d",
     paddingHorizontal: 16,
   },
   headingContainer: {

@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     streakCardContainer: {
         width: "100%",
         minHeight: 160,
-        backgroundColor: "#1F1F29",
+        backgroundColor: "#131313",
         marginTop: 14,
         borderRadius: 16,
         alignSelf: "center",

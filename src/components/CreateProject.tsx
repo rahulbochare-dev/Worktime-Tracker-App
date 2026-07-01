@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
   modalContainer: {
     width: "90%",
     maxWidth: 380,
-    backgroundColor: "#090913",
+    backgroundColor: "#0d0d0d",
     borderRadius: 16,
     borderWidth: 0.3,
     borderColor: "#464646",

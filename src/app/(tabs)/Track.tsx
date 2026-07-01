@@ -143,7 +143,7 @@ export default Track
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#13131A",
+    backgroundColor: "#0d0d0d",
     paddingHorizontal: 16,
   },
   headingContainer: {
@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
     width: "100%",
     minHeight: 300,
     marginTop: 14,
-    backgroundColor: "#1F1F29",
+    backgroundColor: "#151515",
     borderRadius: 16,
     paddingHorizontal: 18,
     paddingTop: 10
@@ -245,15 +245,6 @@ const styles = StyleSheet.create({
     minHeight: 252,
     paddingTop: 8,
     borderRadius: 16,
-    borderTopWidth: 0.3,
-    borderTopColor: "#464646",
     justifyContent: "flex-end"
-  },
-  notesHeadingContainer: {
-    width: "100%",
-    minHeight: 20,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
   },
 })

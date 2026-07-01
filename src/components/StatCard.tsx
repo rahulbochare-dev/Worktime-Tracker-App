@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   container: {
     width: "48%",
     minHeight: 135,
-    backgroundColor: "#1F1F29",
+    backgroundColor: "#151515",
     marginTop: 14,
     borderRadius: 16,
     alignSelf: "center",

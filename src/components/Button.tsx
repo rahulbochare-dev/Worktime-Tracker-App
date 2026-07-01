@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   },
   buttonSecondary: {
     height: 50,
-    backgroundColor: "#2C2C36",
+    backgroundColor: "#0d0d0d",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 100,
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#746A0E",
   },
   buttonSecondaryDisabled: {
-    backgroundColor: "#2C2C36",
+    backgroundColor: "#0d0d0d",
   },
   buttonPressedPrimary: {
     backgroundColor: "#DEC800",

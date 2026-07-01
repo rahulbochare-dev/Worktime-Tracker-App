@@ -38,7 +38,7 @@ export const styles = StyleSheet.create({
   todaysGoalContainer: {
     width: "100%",
     minHeight: 195,
-    backgroundColor: "#1F1F29",
+    backgroundColor: "#131313",
     marginTop: 14,
     borderRadius: 16,
     alignSelf: "center",

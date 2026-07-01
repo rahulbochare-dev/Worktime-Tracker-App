@@ -100,7 +100,7 @@ export default SessionDetails
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#13131A",
+    backgroundColor: "#0d0d0d",
     paddingHorizontal: 16,
   },
   headingContainer: {
@@ -216,7 +216,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "14%",
     marginTop: 18,
-    backgroundColor: "#1F1F29",
+    backgroundColor: "#151515",
     borderRadius: 16,
     paddingHorizontal: 18,
     paddingVertical: 14
