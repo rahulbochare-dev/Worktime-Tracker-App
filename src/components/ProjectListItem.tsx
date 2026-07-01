@@ -1,6 +1,7 @@
 import Lucide from '@react-native-vector-icons/lucide'
 import { StyleSheet, Text, View } from 'react-native'
 import Menu from './Menu'
+import { useToast } from "@/hooks/useToast";
 import { useState } from 'react'
 import { useProjectStore } from '@/store/projects.store'
 
@@ -14,7 +15,8 @@ type props = {
 const Project = ({ title = "Not Available", description, lastTracked, id }: props) => {
   let projectInitial = ""
   const [visible, setVisible] = useState(false)
-  const {deleteProjects, getProjects} = useProjectStore()
+  const { deleteProjects, getProjects } = useProjectStore()
+  const { showToast } = useToast();
 
   if (title == "Not Available") {
     projectInitial = "N/A"
@@ -24,6 +26,19 @@ const Project = ({ title = "Not Available", description, lastTracked, id }: prop
 
   const handleDeleteProject = async () => {
     const response = await deleteProjects(id)
+    console.log(response)
+    if(response?.success){
+      showToast({
+        message: response?.message,
+        messageSecondary: `Project ID: #${id}`,
+        variant: "success",
+      })
+    } else {
+      showToast({
+        message: response?.message,
+        variant: "error",
+      })
+    }
     const getProjectsResponse = await getProjects()
   }
 
@@ -36,12 +51,12 @@ const Project = ({ title = "Not Available", description, lastTracked, id }: prop
         <View style={styles.textContainer}>
           <Text style={styles.projectDeatilsHeadings}>{title || "Title not Available"}</Text>
           <Text style={styles.projectDescriptionHeadings} numberOfLines={1}
-  ellipsizeMode="tail">{description}</Text>
+            ellipsizeMode="tail">{description}</Text>
           <Text style={styles.projectDescriptionHeadings}>{lastTracked || "N/A"}</Text>
         </View>
       </View>
       <Lucide name='more-vertical' size={24} color={"white"} onPress={() => setVisible(!visible)} />
-        <Menu visible={visible} onClose={() => setVisible(!visible)} onDelete={handleDeleteProject}/>
+      <Menu visible={visible} onClose={() => setVisible(!visible)} onDelete={handleDeleteProject} />
     </View>
   )
 }

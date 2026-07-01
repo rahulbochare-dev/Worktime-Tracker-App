@@ -62,6 +62,7 @@ export const getProjects = async () => {
 export const deleteProject = async (id: number) => {
   try {
     const response = await deleteProjectQuery(id)
+    console.log(response)
 
     if (!response) {
       return {
