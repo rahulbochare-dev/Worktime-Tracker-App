@@ -12,6 +12,13 @@ export const createSession = async (projectId: number, time: number, from: numbe
       }
     }
 
+    if (time === 0) {
+      return {
+        message: "Timer not started, please start the timer.",
+        success: false
+      }
+    }
+
     const response = await createSessionQuery(projectId, time, from)
 
     const createdSession = await db.select().from(sessions).where(eq(sessions.id, Number(response.lastInsertRowId)))

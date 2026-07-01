@@ -9,13 +9,6 @@ import { router, useFocusEffect } from 'expo-router'
 
 const SessionHistory = () => {
   const { sessions, getAllSessions } = useSessionStore()
-  
-  // useEffect(() => {
-  //   const getSessions = async () => {
-  //     const response = await getAllSessions()
-  //   }
-  //   getSessions()
-  // }, [])
 
   useFocusEffect(
     useCallback(() => {
@@ -47,7 +40,7 @@ const SessionHistory = () => {
             title={`You don't have any sessions.`}
             description='Once you start sessions, they will appear here.' /> : null}
         {sessions?.map((item) => {
-          return <SessionHistoryListItem projectName={item?.project.name} totalTime={item?.totalTime} key={item?.id} id={item?.id} timeAgo={item?.createdAt} onPress={navigateSessionDetails}/>
+          return <SessionHistoryListItem projectName={item?.project?.name} totalTime={item?.totalTime} key={item?.id} id={item?.id} timeAgo={item?.createdAt} onPress={navigateSessionDetails}/>
         })}
       </ScrollView>
     </SafeAreaView>
