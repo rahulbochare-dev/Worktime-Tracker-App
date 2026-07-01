@@ -1,4 +1,5 @@
 import Lucide from "@react-native-vector-icons/lucide";
+import ToastProvider from "../../context/toast.provider";
 import { useState, useEffect } from "react";
 import { useFonts } from "expo-font";
 import { Redirect, Stack, Tabs } from "expo-router";
@@ -7,7 +8,7 @@ import { useUserStore } from "../../store/user.store";
 
 export default function TabLayout() {
   const [hasUser, setHasUser] = useState(null)
-  const {getUser} = useUserStore()
+  const { getUser } = useUserStore()
 
   const [loaded] = useFonts({
     GeistThin: require("../../assets/fonts/Geist-Thin.ttf"),
@@ -27,95 +28,104 @@ export default function TabLayout() {
     getUserFunc()
   }, [loaded])
 
-  if(hasUser === null){
+  if (hasUser === null) {
     return null
   }
 
-  if(!hasUser){
-    return <Redirect href={"/Register"}/>
+  if (!hasUser) {
+    return <Redirect href={"/Register"} />
   }
 
   if (!loaded) return null;
 
   return (
     <>
-      <Tabs screenOptions={{
-        tabBarActiveTintColor: "#00000",
-        tabBarInactiveTintColor: "white",
-        tabBarStyle: {
-          backgroundColor: "#1F1F29",
-          height: 108,
-          borderWidth: 0.5,
-          borderColor: "#464646",
-        },
-        headerShown: false,
-        tabBarShowLabel: false,
-        tabBarItemStyle: {
-          flexDirection: "row",
-          justifyContent: "space-around",
-          alignItems: "center",
-          paddingHorizontal: 12,
-        },
-        tabBarButton: (props) => {
-          const focused = props["aria-selected"];
-          return (
-            <Pressable
-              onPress={props.onPress}
-              onLongPress={props.onLongPress}
-              style={{
-                width: 40,
-                height: 40,
-                borderRadius: 10,
-                overflow: "hidden",
-                backgroundColor: focused ? "yellow" : "transparent",
-                justifyContent: "center",
-                alignItems: "center",
-              }}>{props.children}</Pressable>
-          );
-        },
-      }}
-      >
-        <Tabs.Screen
-          name="Home"
-          options={{
-            tabBarIcon: ({ color }) => {
-              return <Lucide name="home" size={24} color={color} />
-            }
-          }}
-        />
-        <Tabs.Screen
-          name="Projects"
-          options={{
-            tabBarIcon: ({ color }) => {
-              return <Lucide name="clipboard" size={24} color={color} />
-            }
-          }}
-        />
-        <Tabs.Screen
-          name="Track"
-          options={{
-            tabBarIcon: ({ color }) => {
-              return <Lucide name="alarm-clock-check" size={24} color={color} />
-            }
-          }}
-        />
-        <Tabs.Screen
-          name="Stats"
-          options={{
-            tabBarIcon: ({ color }) => {
-              return <Lucide name="chart-line" size={24} color={color} />
-            }
-          }}
-        />
-        <Tabs.Screen
-          name="Settings"
-          options={{
-            tabBarIcon: ({ color }) => {
-              return <Lucide name="settings" size={24} color={color} />
-            }
-          }}
-        />
-      </Tabs>
+      <ToastProvider
+        onHide={() =>
+          setToast(prev => ({
+            ...prev,
+            visible: false,
+          }))
+        }>
+
+        <Tabs screenOptions={{
+          tabBarActiveTintColor: "#00000",
+          tabBarInactiveTintColor: "white",
+          tabBarStyle: {
+            backgroundColor: "#1F1F29",
+            height: 108,
+            borderWidth: 0.5,
+            borderColor: "#464646",
+          },
+          headerShown: false,
+          tabBarShowLabel: false,
+          tabBarItemStyle: {
+            flexDirection: "row",
+            justifyContent: "space-around",
+            alignItems: "center",
+            paddingHorizontal: 12,
+          },
+          tabBarButton: (props) => {
+            const focused = props["aria-selected"];
+            return (
+              <Pressable
+                onPress={props.onPress}
+                onLongPress={props.onLongPress}
+                style={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: 10,
+                  overflow: "hidden",
+                  backgroundColor: focused ? "yellow" : "transparent",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}>{props.children}</Pressable>
+            );
+          },
+        }}
+        >
+          <Tabs.Screen
+            name="Home"
+            options={{
+              tabBarIcon: ({ color }) => {
+                return <Lucide name="home" size={24} color={color} />
+              }
+            }}
+          />
+          <Tabs.Screen
+            name="Projects"
+            options={{
+              tabBarIcon: ({ color }) => {
+                return <Lucide name="clipboard" size={24} color={color} />
+              }
+            }}
+          />
+          <Tabs.Screen
+            name="Track"
+            options={{
+              tabBarIcon: ({ color }) => {
+                return <Lucide name="alarm-clock-check" size={24} color={color} />
+              }
+            }}
+          />
+          <Tabs.Screen
+            name="Stats"
+            options={{
+              tabBarIcon: ({ color }) => {
+                return <Lucide name="chart-line" size={24} color={color} />
+              }
+            }}
+          />
+          <Tabs.Screen
+            name="Settings"
+            options={{
+              tabBarIcon: ({ color }) => {
+                return <Lucide name="settings" size={24} color={color} />
+              }
+            }}
+          />
+        </Tabs>
+      </ToastProvider>
     </>
   );
 }

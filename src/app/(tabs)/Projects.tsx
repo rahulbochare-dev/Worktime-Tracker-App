@@ -19,7 +19,6 @@ const Projects = () => {
     fetchProjects()
   }, [modalVisible])
 
-
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.headingContainer}>

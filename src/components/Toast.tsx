@@ -1,40 +1,41 @@
 import Lucide from '@react-native-vector-icons/lucide'
 import { StyleSheet, Text, View, Animated } from 'react-native'
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useRef, useEffect } from 'react'
 
 type props = {
   varient: string,
   message: string,
   messageSecondary: string,
+  onHide: () => void;
 }
 
-const Toast = ({ varient, message, messageSecondary }: props) => {
+const Toast = ({ varient, message, messageSecondary, onHide }: props) => {
+  const insets = useSafeAreaInsets();
   const translateY = useRef(new Animated.Value(40)).current;
   const opacity = useRef(new Animated.Value(0)).current;
   const scale = useRef(new Animated.Value(0.9)).current;
 
-  const hideAnimation = (onComplete?: () => void) => {
+  const hideAnimation = (onComplete: () => void) => {
     Animated.parallel([
       Animated.timing(opacity, {
         toValue: 0,
-        duration: 220,
+        duration: 250,
         useNativeDriver: true,
       }),
   
       Animated.timing(translateY, {
         toValue: 40,
-        duration: 220,
+        duration: 250,
         useNativeDriver: true,
       }),
   
       Animated.timing(scale, {
-        toValue: 0.9,
-        duration: 220,
+        toValue: 0.95,
+        duration: 250,
         useNativeDriver: true,
       }),
-    ]).start(() => {
-      onComplete?.();
-    });
+    ]).start(onComplete);
   };
 
   useEffect(() => {
@@ -65,15 +66,17 @@ const Toast = ({ varient, message, messageSecondary }: props) => {
     ]).start();
   
     const timer = setTimeout(() => {
-      hideAnimation(() => {
-      });
+      hideAnimation(onHide);
     }, 3000);
   
     return () => clearTimeout(timer);
   }, []);
 
   return (
-    <Animated.View style={[varient == "success" ? styles.container : styles.containerError, {
+    <Animated.View style={[varient == "success" ? styles.container : styles.containerError,
+      {
+        bottom: insets.bottom + 16,
+      }, {
       opacity,
       transform: [
         { translateY },

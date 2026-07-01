@@ -1,6 +1,7 @@
 import { Modal, StyleSheet, Text, View } from "react-native";
 import { useState } from "react";
 import { useProjectStore } from "../store/projects.store";
+import { useToast } from "@/hooks/useToast";
 import TextInputField from "./TextInput";
 import TextAreaField from "./TextAreaField";
 import Button from "./Button";
@@ -18,6 +19,7 @@ const CreateProject = ({ visible, toggleModal, cancelFunc }: props) => {
   })
 
   const {createProject} = useProjectStore()
+  const { showToast } = useToast();
     
   const onChange = (name: string, text: string) => {
     setProjectData({...projectData, [name]: text})
@@ -27,6 +29,11 @@ const CreateProject = ({ visible, toggleModal, cancelFunc }: props) => {
     const response = await createProject(projectData.projectName, projectData.projectDescription)
     if(response?.success){
       toggleModal(false)
+      showToast({
+        message: response?.message,
+        messageSecondary: `Project ID: #${response?.response.lastInsertRowId}`,
+        variant: "success",
+      });
     }
   }
 
