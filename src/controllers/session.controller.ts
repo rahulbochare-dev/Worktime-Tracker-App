@@ -5,9 +5,9 @@ import { eq } from "drizzle-orm";
 
 export const createSession = async (projectId: number, time: number, from: number) => {
   try {
-    if (!projectId || !time) {
+    if (!projectId) {
       return {
-        message: "Cannot get project id or time!",
+        message: "Project not selected, please select a project by clicking on start new session.",
         success: false
       }
     }
