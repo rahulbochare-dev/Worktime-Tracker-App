@@ -7,7 +7,7 @@ export const createSession = async (projectId: number, time: number, from: numbe
   try {
     if (!projectId) {
       return {
-        message: "Project not selected, please select a project by clicking on start new session.",
+        message: "Project not selected, select a project by clicking on start new session.",
         success: false
       }
     }

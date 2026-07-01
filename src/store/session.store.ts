@@ -40,7 +40,14 @@ export const useSessionStore = create((set) => ({
   deleteSession: async (id: number) => {
     try {
       const response = await deleteSession(id)
-      set({ loading: false })
+      set((state) => {
+        console.log("Delete id:", id);
+        state.sessions.forEach((session) => {
+          console.log("Session id:", session.id, typeof session.id);
+        })
+        const updated = state.sessions.filter(session => session.id !== id);
+        return { sessions: updated };
+      });
       return response
     } catch (error) {
       set({ error: error })

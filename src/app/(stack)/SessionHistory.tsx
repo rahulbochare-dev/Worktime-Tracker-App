@@ -1,21 +1,29 @@
 import Lucide from '@react-native-vector-icons/lucide'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useSessionStore } from '../../store/session.store'
 import SessionHistoryListItem from '@/components/SessionHistoryListItem'
 import EmptyState from '@/components/EmptyState'
-import { router } from 'expo-router'
+import { router, useFocusEffect } from 'expo-router'
 
 const SessionHistory = () => {
   const { sessions, getAllSessions } = useSessionStore()
   
-  useEffect(() => {
-    const getSessions = async () => {
-      const response = await getAllSessions()
-    }
-    getSessions()
-  }, [])
+  // useEffect(() => {
+  //   const getSessions = async () => {
+  //     const response = await getAllSessions()
+  //   }
+  //   getSessions()
+  // }, [])
+
+  useFocusEffect(
+    useCallback(() => {
+      getAllSessions();
+  
+      return () => {};
+    }, [getAllSessions])
+  );
 
   const navigateSessionDetails = (id: number) => {
     router.push({
