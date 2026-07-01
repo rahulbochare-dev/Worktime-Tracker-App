@@ -23,13 +23,13 @@ const Toast = ({ varient, message, messageSecondary, onHide }: props) => {
         duration: 250,
         useNativeDriver: true,
       }),
-  
+
       Animated.timing(translateY, {
         toValue: 40,
         duration: 250,
         useNativeDriver: true,
       }),
-  
+
       Animated.timing(scale, {
         toValue: 0.95,
         duration: 250,
@@ -42,21 +42,21 @@ const Toast = ({ varient, message, messageSecondary, onHide }: props) => {
     translateY.setValue(40);
     opacity.setValue(0);
     scale.setValue(0.9);
-  
+
     Animated.parallel([
       Animated.timing(opacity, {
         toValue: 1,
         duration: 250,
         useNativeDriver: true,
       }),
-  
+
       Animated.spring(translateY, {
         toValue: 0,
         friction: 8,
         tension: 80,
         useNativeDriver: true,
       }),
-  
+
       Animated.spring(scale, {
         toValue: 1,
         friction: 8,
@@ -64,38 +64,39 @@ const Toast = ({ varient, message, messageSecondary, onHide }: props) => {
         useNativeDriver: true,
       }),
     ]).start();
-  
+
     const timer = setTimeout(() => {
       hideAnimation(onHide);
     }, 3000);
-  
+
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <Modal
-    visible
-    transparent
-    animationType="none"
-    statusBarTranslucent
-  >
-    <Animated.View pointerEvents="none" style={[varient == "success" ? styles.container : styles.containerError,
+      visible
+      transparent
+      animationType="none"
+      statusBarTranslucent
+    >
+      <Animated.View pointerEvents="none" style={[varient == "success" ? styles.container : styles.containerError,
       {
         bottom: insets.bottom + 50,
       }, {
-      opacity,
-      transform: [
-        { translateY },
-        { scale },
-      ],
-    },]}>
-      {varient == "success" ? <Lucide name='check-circle-2' size={24} color={"#14C100"} /> :
-        <Lucide name='x-circle' size={24} color={"#D50000"} />}
-      <View>
-        <Text style={styles.textTop}>{message}</Text>
-        {messageSecondary && <Text style={styles.textBottom}>{messageSecondary}</Text>}
-      </View>
-    </Animated.View>
+        opacity,
+        transform: [
+          { translateY },
+          { scale },
+        ],
+      },]}>
+        {varient == "success" ? <Lucide name='check-circle-2' size={24} color={"#14C100"} /> :
+          <Lucide name='x-circle' size={24} color={"#D50000"} />}
+        <View style={{ flex: 1, paddingRight: 12 }}>
+          <Text numberOfLines={2}
+            ellipsizeMode="tail" style={styles.textTop}>{message}</Text>
+          {messageSecondary && <Text style={styles.textBottom}>{messageSecondary}</Text>}
+        </View>
+      </Animated.View>
     </Modal>
   )
 }
@@ -105,6 +106,7 @@ export default Toast
 const styles = StyleSheet.create({
   container: {
     width: 342,
+    maxWidth: "90%",
     height: 62,
     backgroundColor: "#00240F",
     borderWidth: 0.8,
@@ -113,6 +115,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
+    flex: 1,
     gap: 12,
     paddingLeft: 16,
     elevation: 10,
@@ -124,6 +127,7 @@ const styles = StyleSheet.create({
   },
   containerError: {
     width: 342,
+    maxWidth: "90%",
     height: 62,
     backgroundColor: "#2D0000",
     borderWidth: 0.8,
@@ -132,6 +136,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
+    flex: 1,
     gap: 12,
     paddingLeft: 16,
     elevation: 10,
@@ -144,10 +149,14 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: "GeistRegular",
     color: 'white',
+    flexShrink: 1,
+    flexWrap: "wrap",
   },
   textBottom: {
     fontSize: 12,
     fontFamily: "GeistRegular",
     color: '#828282',
+    flexShrink: 1,
+    flexWrap: "wrap",
   },
 })
