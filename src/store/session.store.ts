@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { createSession, getAllSessions, getSessionDetails } from '../controllers/session.controller'
+import { createSession, getAllSessions, getSessionDetails, deleteSession } from '../controllers/session.controller'
 
 export const useSessionStore = create((set) => ({
   sessions: null,
@@ -27,10 +27,20 @@ export const useSessionStore = create((set) => ({
     }
   },
 
-  getSessionDetails: async (id: string) => {
+  getSessionDetails: async (id: number) => {
     try {
       const response = await getSessionDetails(id)
       set({ sessionDetails: response?.response, loading: false })
+      return response
+    } catch (error) {
+      set({ error: error })
+    }
+  },
+
+  deleteSession: async (id: number) => {
+    try {
+      const response = await deleteSession(id)
+      set({ loading: false })
       return response
     } catch (error) {
       set({ error: error })
