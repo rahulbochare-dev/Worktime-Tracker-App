@@ -1,4 +1,4 @@
-import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import { useEffect } from "react";
 import Button from "./Button";
@@ -11,14 +11,16 @@ type props = {
 };
 
 const StartSessionModal = ({ visible, startFunc, cancelFunc }: props) => {
-  const { projects, getProjects } = useProjectStore()
+  const { projects, getProjects } = useProjectStore();
 
   useEffect(() => {
     const fetchProjects = async () => {
-      const response = await getProjects()
-    }
-    fetchProjects()
-  }, [visible])
+      await getProjects();
+    };
+    fetchProjects();
+  }, [visible]);
+
+  if (!visible) return null;
 
   return (
     <Animated.View
@@ -28,31 +30,38 @@ const StartSessionModal = ({ visible, startFunc, cancelFunc }: props) => {
       <Animated.View
         entering={FadeIn.duration(150)}
         exiting={FadeOut.duration(120)}
-        style={[styles.modalContainer,
-          {
-            transform: [{ scale: 0.96 }],
-          },
+        style={[
+          styles.modalContainer,
+          { transform: [{ scale: 0.96 }] }
         ]}>
-        <View style={styles.backdrop}>
-          <View style={styles.modalContainer}>
-            <Text style={styles.titleText}>Select Project</Text>
-            <ScrollView style={styles.listItemContainerMain}>
-              {projects?.map((items) => {
-                return <Pressable style={styles.projectDeatils} key={items.id} onPress={() => startFunc(items.id)}>
-                  <View style={styles.listItemContainer}>
-                    <View style={styles.projectDeatilsIcon}>
-                      <Text style={styles.projectDeatilsIconText}>{items.name.slice(0, 1).toUpperCase()}</Text>
-                    </View>
-                    <View>
-                      <Text style={styles.projectDeatilsHeadings}>{items?.name}</Text>
-                    </View>
-                  </View>
-                </Pressable>
-              })}
-            </ScrollView>
-            <Button title={"Cancel"} primary={false} disabled={false} width={"100%"} func={cancelFunc} />
-          </View>
-        </View>
+        <Text style={styles.titleText}>Select Project</Text>
+        <ScrollView style={styles.listItemContainerMain}>
+          {projects?.map((items) => (
+            <Pressable
+              key={items.id}
+              style={styles.projectDeatils}
+              onPress={() => startFunc(items.id)}>
+              <View style={styles.listItemContainer}>
+                <View style={styles.projectDeatilsIcon}>
+                  <Text style={styles.projectDeatilsIconText}>
+                    {items.name.slice(0, 1).toUpperCase()}
+                  </Text>
+                </View>
+                <View>
+                  <Text style={styles.projectDeatilsHeadings}>
+                    {items?.name}
+                  </Text>
+                </View>
+              </View>
+            </Pressable>
+          ))}
+        </ScrollView>
+        <Button
+          title={"Cancel"}
+          primary={false}
+          disabled={false}
+          width={"100%"}
+          func={cancelFunc}/>
       </Animated.View>
     </Animated.View>
   );
@@ -82,7 +91,7 @@ const styles = StyleSheet.create({
     borderColor: "#464646",
     paddingHorizontal: 18,
     paddingVertical: 22,
-    justifyContent: "space-between",
+    justifyContent: "center",
     alignItems: "center",
     gap: 16,
   },
@@ -103,13 +112,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: 4,
-    gap: 14
+    gap: 14,
   },
   projectDeatils: {
-    flex: 1,
     flexDirection: "row",
     alignItems: "center",
-    gap: 14,
   },
   projectDeatilsIcon: {
     width: 40,
@@ -122,13 +129,11 @@ const styles = StyleSheet.create({
   projectDeatilsIconText: {
     fontSize: 18,
     fontFamily: "GeistMedium",
-    fontWeight: "100",
     color: "white",
   },
   projectDeatilsHeadings: {
     fontSize: 16,
     fontFamily: "GeistMedium",
-    fontWeight: "100",
     color: "white",
-  }
+  },
 });
