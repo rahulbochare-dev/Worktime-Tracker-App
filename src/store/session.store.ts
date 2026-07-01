@@ -41,10 +41,6 @@ export const useSessionStore = create((set) => ({
     try {
       const response = await deleteSession(id)
       set((state) => {
-        console.log("Delete id:", id);
-        state.sessions.forEach((session) => {
-          console.log("Session id:", session.id, typeof session.id);
-        })
         const updated = state.sessions.filter(session => session.id !== id);
         return { sessions: updated };
       });

@@ -110,7 +110,7 @@ const Track = () => {
         <View style={styles.trackHeadingContainer}>
           <View style={styles.trackHeadingContainerLeft}>
             <Text style={styles.projectDeatilsHeading}>{currentProject?.name || "No project Selected"}</Text>
-            <Text style={styles.projectDeatilsAgo}>Started: 33min ago</Text>
+            <Text style={styles.projectDeatilsAgo}>Started: 0min ago</Text>
           </View>
           <Lucide name='timer-reset' size={24} color={"white"} onPress={handleReset} />
         </View>
