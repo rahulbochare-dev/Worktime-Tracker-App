@@ -4,13 +4,15 @@ import { formatSessionTime } from '../../utils/formatSessionTime'
 import Lucide from '@react-native-vector-icons/lucide'
 import { StyleSheet, Text, View } from 'react-native'
 import { useEffect } from 'react'
+import { useToast } from "../../hooks/useToast";
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { useLocalSearchParams } from 'expo-router'
+import { router, useLocalSearchParams } from 'expo-router'
 import { useSessionStore } from '@/store/session.store'
 
 const SessionDetails = () => {
   const { id } = useLocalSearchParams()
-  const { sessionDetails, getSessionDetails } = useSessionStore()
+  const { sessionDetails, getSessionDetails, deleteSession } = useSessionStore()
+  const { showToast } = useToast();
 
   useEffect(() => {
     const getDetails = async () => {
@@ -28,6 +30,23 @@ const SessionDetails = () => {
     return {
       time: `${formattedHours}:${String(minutes).padStart(2, "0")}`,
       period,
+    }
+  }
+
+  const handleDeleteSession = async () => {
+    const response = await deleteSession(id)
+    if(response?.success){
+      router.back()
+      showToast({
+        message: response?.message,
+        messageSecondary: `Session ID: #${id}`,
+        variant: "success",
+      })
+    } else {
+      showToast({
+        message: response?.message,
+        variant: "error",
+      })
     }
   }
 
@@ -89,7 +108,7 @@ const SessionDetails = () => {
         </View>
       </View>
       <View style={styles.buttonConatiner}>
-        <Button title={"Delete Session"} destructive width={"90%"} disabled={false} />
+        <Button title={"Delete Session"} destructive width={"90%"} disabled={false} func={handleDeleteSession} />
       </View>
     </SafeAreaView>
   )

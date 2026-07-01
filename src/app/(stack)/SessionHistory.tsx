@@ -9,8 +9,7 @@ import { router } from 'expo-router'
 
 const SessionHistory = () => {
   const { sessions, getAllSessions } = useSessionStore()
-  const { sessionId, setSessionId } = useState()
-
+  
   useEffect(() => {
     const getSessions = async () => {
       const response = await getAllSessions()
@@ -52,7 +51,7 @@ export default SessionHistory
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#0d0d0d",
+    backgroundColor: "#13131A",
     paddingHorizontal: 16,
   },
   headingContainer: {
