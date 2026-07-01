@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
   },
 
   buttonTextDestructive: {
-    color: "#A70000",
+    color: "#FF3B30",
     fontSize: 16,
     fontFamily: "GeistMedium",
   },

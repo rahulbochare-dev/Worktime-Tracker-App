@@ -26,7 +26,7 @@ export const getAllSessionQuery = async () => {
   return response;
 }
 
-export const getSessionDetailsQuery = async (id: string) => {
+export const getSessionDetailsQuery = async (id: number) => {
   const response = await db.query.sessions.findFirst({
     where: eq(sessions.id, id),
     with: {
@@ -34,5 +34,10 @@ export const getSessionDetailsQuery = async (id: string) => {
     }
   })
 
+  return response;
+}
+
+export const deleteSessionQuery = async (id: number) => {
+  const response = await db.delete(sessions).where(eq(sessions.id, id))
   return response;
 }
