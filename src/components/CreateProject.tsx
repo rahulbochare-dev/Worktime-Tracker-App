@@ -23,7 +23,6 @@ const CreateProject = ({ visible, toggleModal, cancelFunc }: props) => {
     
   const onChange = (name: string, text: string) => {
     setProjectData({...projectData, [name]: text})
-    
   }
 
   const onSubmit = async () => {
@@ -41,6 +40,11 @@ const CreateProject = ({ visible, toggleModal, cancelFunc }: props) => {
       setProjectData({
         projectName: "",
         projectDescription: "",
+      })
+    } else {
+      showToast({
+        message: response?.message,
+        variant: "error",
       })
     }
   }

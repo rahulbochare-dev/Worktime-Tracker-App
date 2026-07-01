@@ -1,5 +1,5 @@
 import Lucide from '@react-native-vector-icons/lucide'
-import { StyleSheet, Text, View, Animated } from 'react-native'
+import { StyleSheet, Text, View, Animated, Modal } from 'react-native'
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useRef, useEffect } from 'react'
 
@@ -73,9 +73,15 @@ const Toast = ({ varient, message, messageSecondary, onHide }: props) => {
   }, []);
 
   return (
-    <Animated.View style={[varient == "success" ? styles.container : styles.containerError,
+    <Modal
+    visible
+    transparent
+    animationType="none"
+    statusBarTranslucent
+  >
+    <Animated.View pointerEvents="none" style={[varient == "success" ? styles.container : styles.containerError,
       {
-        bottom: insets.bottom + 16,
+        bottom: insets.bottom + 50,
       }, {
       opacity,
       transform: [
@@ -90,6 +96,7 @@ const Toast = ({ varient, message, messageSecondary, onHide }: props) => {
         {messageSecondary && <Text style={styles.textBottom}>{messageSecondary}</Text>}
       </View>
     </Animated.View>
+    </Modal>
   )
 }
 

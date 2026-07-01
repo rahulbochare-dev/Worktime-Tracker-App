@@ -7,10 +7,11 @@ export const createProject = async (projectName: string, description: string) =>
   let message = ""
   let success = true
 
-  if(!projectName || !description){
-    message = "Project name and Description are required!"
-    success = false
-    return
+  if(!projectName.trim() || !description.trim()){
+    return {
+      message: "Project name and Description are required!",
+      success: false
+    }
   }
 
   const response = await createProjectQuery(projectName, description)
