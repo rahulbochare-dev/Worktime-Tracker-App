@@ -1,4 +1,5 @@
 import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import { useEffect } from "react";
 import Button from "./Button";
 import { useProjectStore } from "@/store/projects.store";
@@ -20,31 +21,40 @@ const StartSessionModal = ({ visible, startFunc, cancelFunc }: props) => {
   }, [visible])
 
   return (
-    <Modal
-      visible={visible}
-      transparent
-      animationType="fade">
-      <View style={styles.backdrop}>
-        <View style={styles.modalContainer}>
-          <Text style={styles.titleText}>Select Project</Text>
-          <ScrollView style={styles.listItemContainerMain}>
-            {projects?.map((items) => {
-              return <Pressable style={styles.projectDeatils} key={items.id} onPress={()=> startFunc(items.id)}>
-                <View style={styles.listItemContainer}>
-                  <View style={styles.projectDeatilsIcon}>
-                    <Text style={styles.projectDeatilsIconText}>{items.name.slice(0, 1).toUpperCase()}</Text>
+    <Animated.View
+      entering={FadeIn.duration(150)}
+      exiting={FadeOut.duration(120)}
+      style={styles.backdrop}>
+      <Animated.View
+        entering={FadeIn.duration(150)}
+        exiting={FadeOut.duration(120)}
+        style={[styles.modalContainer,
+          {
+            transform: [{ scale: 0.96 }],
+          },
+        ]}>
+        <View style={styles.backdrop}>
+          <View style={styles.modalContainer}>
+            <Text style={styles.titleText}>Select Project</Text>
+            <ScrollView style={styles.listItemContainerMain}>
+              {projects?.map((items) => {
+                return <Pressable style={styles.projectDeatils} key={items.id} onPress={() => startFunc(items.id)}>
+                  <View style={styles.listItemContainer}>
+                    <View style={styles.projectDeatilsIcon}>
+                      <Text style={styles.projectDeatilsIconText}>{items.name.slice(0, 1).toUpperCase()}</Text>
+                    </View>
+                    <View>
+                      <Text style={styles.projectDeatilsHeadings}>{items?.name}</Text>
+                    </View>
                   </View>
-                  <View>
-                    <Text style={styles.projectDeatilsHeadings}>{items?.name}</Text>
-                  </View>
-                </View>
-              </Pressable>
-            })}
-          </ScrollView>
-          <Button title={"Cancel"} primary={false} disabled={false} width={"100%"} func={cancelFunc} />
+                </Pressable>
+              })}
+            </ScrollView>
+            <Button title={"Cancel"} primary={false} disabled={false} width={"100%"} func={cancelFunc} />
+          </View>
         </View>
-      </View>
-    </Modal>
+      </Animated.View>
+    </Animated.View>
   );
 };
 
@@ -52,11 +62,16 @@ export default StartSessionModal;
 
 const styles = StyleSheet.create({
   backdrop: {
-    flex: 1,
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
     backgroundColor: "rgba(0,0,0,0.6)",
     justifyContent: "center",
     alignItems: "center",
-    paddingHorizontal: 16,
+    zIndex: 9999,
+    elevation: 9999,
   },
   modalContainer: {
     width: "90%",
