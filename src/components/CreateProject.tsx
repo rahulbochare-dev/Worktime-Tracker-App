@@ -23,17 +23,25 @@ const CreateProject = ({ visible, toggleModal, cancelFunc }: props) => {
     
   const onChange = (name: string, text: string) => {
     setProjectData({...projectData, [name]: text})
+    
   }
 
   const onSubmit = async () => {
     const response = await createProject(projectData.projectName, projectData.projectDescription)
+    console.log(response)
     if(response?.success){
       toggleModal(false)
+
       showToast({
         message: response?.message,
         messageSecondary: `Project ID: #${response?.response.lastInsertRowId}`,
         variant: "success",
-      });
+      })
+
+      setProjectData({
+        projectName: "",
+        projectDescription: "",
+      })
     }
   }
 
