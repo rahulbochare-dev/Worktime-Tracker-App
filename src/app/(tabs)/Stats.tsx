@@ -3,6 +3,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { Lucide } from '@react-native-vector-icons/lucide'
 import MainStatCard from '@/components/MainStatCard'
 import StatCard from '@/components/StatCard'
+import WeekLineChart from '@/components/WeekLineChart'
 
 const Stats = () => {
   return (
@@ -13,9 +14,9 @@ const Stats = () => {
           <Text style={styles.heading2Text}>12 Projects</Text>
         </View>
       </View>
+      <ScrollView>
       <MainStatCard />
-      <ScrollView >
-        <View style={styles.cardContainer}>
+        {/* <View style={styles.cardContainer}> */}
           <StatCard
             title={"Streak"}
             icon={"flame"}
@@ -44,7 +45,8 @@ const Stats = () => {
             mainNumber={35.7}
             mainNumberText={"Hours"}
             tip={"3 hrs less than last week"}/>
-        </View>
+        {/* </View> */}
+      <WeekLineChart/>
       </ScrollView>
     </SafeAreaView>
   )
