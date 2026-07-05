@@ -6,6 +6,7 @@
     "@expo/ui": "~56.0.16",
     "@react-native-vector-icons/lucide": "^13.1.2",
     "babel-plugin-inline-import": "^3.0.0",
+    "cli": "^1.0.1",
     "drizzle-orm": "^0.45.2",
     "expo": "~56.0.9",
     "expo-constants": "~56.0.17",
