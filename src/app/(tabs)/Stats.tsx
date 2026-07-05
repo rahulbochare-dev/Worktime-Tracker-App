@@ -16,7 +16,7 @@ const Stats = () => {
       </View>
       <ScrollView>
       <MainStatCard />
-        {/* <View style={styles.cardContainer}> */}
+        <View style={styles.cardContainer}>
           <StatCard
             title={"Streak"}
             icon={"flame"}
@@ -45,7 +45,7 @@ const Stats = () => {
             mainNumber={35.7}
             mainNumberText={"Hours"}
             tip={"3 hrs less than last week"}/>
-        {/* </View> */}
+        </View>
       <WeekLineChart/>
       </ScrollView>
     </SafeAreaView>
@@ -86,8 +86,8 @@ const styles = StyleSheet.create({
   },
   cardContainer: {
     width: "100%",
-    height: 122,
     marginTop: 8,
+    marginBottom: 16,
     paddingTop: 8,
     flexDirection: "row",
     flexWrap: "wrap",
