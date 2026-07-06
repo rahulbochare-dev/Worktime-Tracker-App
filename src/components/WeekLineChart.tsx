@@ -47,7 +47,7 @@ const WeekLineChart = () => {
           rulesColor="#464646"
           rulesType="solid"
           disableScroll
-          spacing={43}
+          spacing={45}
           initialSpacing={10}
           endSpacing={10}
           noOfSections={4}
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     width: 352,
     backgroundColor: "#151515",
     borderRadius: 16,
-    paddingHorizontal: 18,
+    paddingLeft: 18,
     paddingVertical: 16
   },
   chartContainer: {

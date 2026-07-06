@@ -33,3 +33,10 @@ export const sessionRelations = relations(sessions, ({one}) => ({
     references: [projects.id]
   })
 }))
+
+export const settings = sqliteTable("settings", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  dailyGoal: integer("daily_goal").notNull(),
+  createdAt: integer("created_at", {mode: "timestamp_ms"}).notNull(),
+  updatedAt: integer("updated_at", {mode: "timestamp_ms"}).notNull()
+})

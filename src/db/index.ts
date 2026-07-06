@@ -27,10 +27,6 @@ export const initDB = async () => {
       updated_at INTEGER NOT NULL
     );
   `);
-
-  // await sqliteDB.execAsync(`
-  //   DROP TABLE IF EXISTS sessions;
-  // `);
   
   await sqliteDB.execAsync(`
     CREATE TABLE IF NOT EXISTS sessions (
@@ -42,6 +38,15 @@ export const initDB = async () => {
       created_at INTEGER NOT NULL,
       updated_at INTEGER NOT NULL,
       FOREIGN KEY (project_id) REFERENCES projects(id)
+    );
+  `);
+
+  await sqliteDB.execAsync(`
+    CREATE TABLE IF NOT EXISTS settings (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      daliy_goal INTEGER NOT NULL,
+      created_at INTEGER NOT NULL,
+      updated_at INTEGER NOT NULL,
     );
   `);
 };
