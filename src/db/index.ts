@@ -5,7 +5,7 @@ import * as schema from '@/db/schema';
 
 export const sqliteDB = SQlite.openDatabaseSync("worktimeTacker.db")
 
-export const db = drizzle(sqliteDB, {schema})
+export const db = drizzle(sqliteDB, { schema })
 
 export const initDB = async () => {
   await sqliteDB.execAsync(`
@@ -27,7 +27,7 @@ export const initDB = async () => {
       updated_at INTEGER NOT NULL
     );
   `);
-  
+
   await sqliteDB.execAsync(`
     CREATE TABLE IF NOT EXISTS sessions (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -43,10 +43,8 @@ export const initDB = async () => {
 
   await sqliteDB.execAsync(`
     CREATE TABLE IF NOT EXISTS settings (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      daliy_goal INTEGER NOT NULL,
-      created_at INTEGER NOT NULL,
-      updated_at INTEGER NOT NULL,
+      id INTEGER NOT NULL,
+      daily_goal INTEGER NOT NULL
     );
   `);
 };

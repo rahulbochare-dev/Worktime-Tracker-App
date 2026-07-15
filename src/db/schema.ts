@@ -35,8 +35,6 @@ export const sessionRelations = relations(sessions, ({one}) => ({
 }))
 
 export const settings = sqliteTable("settings", {
-  id: integer("id").primaryKey({ autoIncrement: true }),
+  id: integer().primaryKey(),
   dailyGoal: integer("daily_goal").notNull(),
-  createdAt: integer("created_at", {mode: "timestamp_ms"}).notNull(),
-  updatedAt: integer("updated_at", {mode: "timestamp_ms"}).notNull()
 })
