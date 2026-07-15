@@ -1,7 +1,7 @@
 import { createGoalQuery } from "../db/queries/settings.queries";
 import { convertToMS } from "../utils/convertToMS";
 
-export const createSession = async (hours: number, minutes: number) => {
+export const setGoal = async (hours: number, minutes: number) => {
   try {
     if (!hours || !minutes) {
       return {

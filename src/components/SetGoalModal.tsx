@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import { useState } from "react";
-import { useProjectStore } from "../store/projects.store";
+import { setGoal } from "../controllers/settings.controller";
 import TimeField from "./TimeField";
 import Button from "./Button";
 
@@ -20,7 +20,11 @@ const SetGoalModal = ({ visible, toggleModal, cancelFunc }: props) => {
   const onChange = (name: string, number: string) => {
     setGoalTime({ ...goalTime, [name]: number })
   }
-  console.log(goalTime)
+
+  const onSubmit = async () => {
+    const response = await setGoal(goalTime.hours, goalTime.minutes)
+    console.log(response)
+  }
 
   return (
     <>
@@ -54,10 +58,11 @@ const SetGoalModal = ({ visible, toggleModal, cancelFunc }: props) => {
               />
             </View>
             <Button
-              title="Create Project"
+              title="Set Goal"
               primary={true}
               disabled={false}
               width="100%"
+              func={onSubmit}
             />
 
             <Button
