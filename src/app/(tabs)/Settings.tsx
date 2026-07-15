@@ -1,8 +1,16 @@
 import { StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import SetGoal from '../../components/SetGoal'
+import SetGoalModal from '../../components/SetGoalModal'
+import { useState } from 'react'
+import SetGoal from '@/components/SetGoal'
 
 const Settings = () => {
+  const [modalVisible, setModalVisible] = useState(false)
+
+  const handleModalVisible = () => {
+    setModalVisible(!modalVisible)
+  }
+  
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.headingContainer}>
@@ -10,7 +18,8 @@ const Settings = () => {
           <Text style={styles.heading1Text}>Settings</Text>
         </View>
       </View>
-      <SetGoal/>
+      <SetGoal func={handleModalVisible}/>
+      <SetGoalModal visible={modalVisible} cancelFunc={() => setModalVisible(!modalVisible)} toggleModal={setModalVisible} />
     </SafeAreaView>
   )
 }
