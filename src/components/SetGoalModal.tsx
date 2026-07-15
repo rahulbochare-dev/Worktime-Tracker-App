@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import { useState } from "react";
-import { setGoal } from "../controllers/settings.controller";
 import TimeField from "./TimeField";
 import Button from "./Button";
+import { useSettingsStore } from "@/store/settings.store";
 
 type props = {
   visible: boolean,
@@ -16,6 +16,8 @@ const SetGoalModal = ({ visible, toggleModal, cancelFunc }: props) => {
     hours: null,
     minutes: null
   })
+
+  const {dailyGoal, setGoal} = useSettingsStore()
 
   const onChange = (name: string, number: string) => {
     setGoalTime({ ...goalTime, [name]: number })

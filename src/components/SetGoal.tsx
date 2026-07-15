@@ -1,15 +1,17 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native'
-import React, { useState } from 'react'
+import { useSettingsStore } from '@/store/settings.store'
 
 type props = {
   func: () => void
 }
 
 const SetGoal = ({func}: props) => {
+  const {dailyGoal} = useSettingsStore()
+  
   return (
     <Pressable style={styles.container} onPress={func}>
       <Text style={styles.setGoalText}>SetGoal</Text>
-      <Text style={styles.goalNoText}>4hr 33min</Text>
+      <Text style={styles.goalNoText}>{dailyGoal?.hours}hr {dailyGoal?.minutes}min</Text>
     </Pressable>
   )
 }
