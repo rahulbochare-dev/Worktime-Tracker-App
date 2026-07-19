@@ -21,5 +21,5 @@ export const createGoalQuery = async (timeMS: number) => {
 export const getGoalQuery = async () => {
   const response = await db.select().from(settings)
 
-  return response;
+  return response[0]?.dailyGoal;
 }
