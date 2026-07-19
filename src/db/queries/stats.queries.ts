@@ -1,4 +1,4 @@
-import { and, eq, gte, lt } from "drizzle-orm";
+import { and, eq, gte, lt, sql } from "drizzle-orm";
 import { db } from "../index";
 import { sessions } from "../schema";
 
@@ -33,5 +33,24 @@ export const getCurrentWeekSessionsTime = async () => {
     (total, session) => total + session.totalTime,
     0
   )
-  
+}
+
+export const getCurrentMonthSessionsTime = async () => {
+  const now = new Date()
+
+  const start = new Date(now.getFullYear(), now.getMonth(), 1)
+  const end = new Date(now.getFullYear(), now.getMonth() + 1, 1)
+
+  const totalTimeThisMonth = await db.select({
+    totalTime: sql<number>`COALESCE(SUM(${sessions.totalTime}), 0)`
+  })
+  .from(sessions)
+  .where(
+    and(
+      gte(sessions.startTime, start),
+      lt(sessions.endTime, end)
+    )
+  )
+
+  return totalTimeThisMonth[0].totalTime
 }
