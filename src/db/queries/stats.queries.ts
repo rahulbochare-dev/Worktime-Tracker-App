@@ -54,3 +54,23 @@ export const getCurrentMonthSessionsTime = async () => {
 
   return totalTimeThisMonth[0].totalTime
 }
+
+export const getTodaySessionsTime = async () => {
+  const start = new Date();
+  start.setHours(0, 0, 0, 0);
+
+  const end = new Date(start);
+  end.setDate(end.getDate() + 1);
+
+  const todaySessions = await db.select().from(sessions).where(
+    and(
+      gte(sessions.startTime, start),
+      lt(sessions.endTime, end)
+    )
+  )
+
+  return todaySessions.reduce(
+    (total, session) => total + session.totalTime,
+    0
+  )
+}
