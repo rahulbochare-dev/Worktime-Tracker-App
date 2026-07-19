@@ -1,6 +1,6 @@
 import { desc, eq } from "drizzle-orm";
 import { db } from "../index";
-import { projects, sessions } from "../schema";
+import { sessions } from "../schema";
 
 export const createSessionQuery = async (projectId: number, time: number, from: number) => {
   const response = await db.insert(sessions).values({
