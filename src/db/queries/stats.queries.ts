@@ -1,6 +1,7 @@
 import { and, eq, gte, lt, sql } from "drizzle-orm";
 import { db } from "../index";
 import { sessions } from "../schema";
+import { getGoalQuery } from "./settings.queries";
 
 const getCurrentWeek = () => {
   const now = new Date()
@@ -73,4 +74,13 @@ export const getTodaySessionsTime = async () => {
     (total, session) => total + session.totalTime,
     0
   )
+}
+
+export const todayGoalPercentComplete = async () => {
+  const dailyGoal = await getGoalQuery()
+  const todayTotalTime = await getTodaySessionsTime()
+
+  const goalCompletePercent = Math.min((todayTotalTime / dailyGoal) * 100, 100)  
+
+  return goalCompletePercent
 }
