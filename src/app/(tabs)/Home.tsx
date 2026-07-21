@@ -1,16 +1,25 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import OngoingSession from '../../components/OngoingSession'
-import StartSessionModal from '../../components/StartSessionModal'
 import StreakCard from '../../components/StreakCard'
 import TodaysGoal from '../../components/TodaysGoal'
 import { useUserStore } from '@/store/user.store'
+import { useStatsStore } from '@/store/stats.store'
 
 const Home = () => {
   const [modalVisible, setModalVisible] = useState(false)
 
   const {firstName} = useUserStore()
+  const { getGoalPercent, goalCompletePerecnt } = useStatsStore()
+
+  useEffect(() => {
+    const callApi = async () => {
+      await getGoalPercent()
+    }
+    callApi()
+  }, [])
+
+  console.log(Math.round(goalCompletePerecnt))
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -21,7 +30,7 @@ const Home = () => {
         <Text style={styles.todaysSummaryText}>Today's Summary</Text>
       </View>
       <StreakCard/>
-      <TodaysGoal/>
+      <TodaysGoal progress={Math.round(goalCompletePerecnt)}/>
     </SafeAreaView>
   )
 }

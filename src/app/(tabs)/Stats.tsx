@@ -12,7 +12,9 @@ const Stats = () => {
   useEffect(() => {
     const callApi = async () => {
       await getWeekTotalTime()
-      await getMonthTotalTime()
+      const response = await getMonthTotalTime()
+      console.log(response);
+      
     }
     callApi()
   }, [])

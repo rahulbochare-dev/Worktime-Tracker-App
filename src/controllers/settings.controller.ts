@@ -10,13 +10,6 @@ export const setGoal = async (hours: number, minutes: number) => {
       }
     }
 
-    if (hours == 0 || minutes == 0) {
-      return {
-        message: "Please enter a valid number!.",
-        success: false
-      }
-    }
-
     const timeMS = convertToMS(hours, minutes)
 
     const response = await createGoalQuery(timeMS)
