@@ -1,5 +1,5 @@
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
-import { useEffect } from 'react'
+import { useFocusEffect } from 'expo-router'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import MainStatCard from '@/components/MainStatCard'
 import StatCard from '@/components/StatCard'
@@ -9,7 +9,7 @@ import { useStatsStore } from '../../store/stats.store'
 const Stats = () => {
   const { getWeekTotalTime, getMonthTotalTime } = useStatsStore()
 
-  useEffect(() => {
+  useFocusEffect(() => {
     const callApi = async () => {
       await getWeekTotalTime()
       const response = await getMonthTotalTime()
@@ -17,7 +17,7 @@ const Stats = () => {
       
     }
     callApi()
-  }, [])
+  })
   
   return (
     <SafeAreaView style={styles.safeArea}>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
+import { useFocusEffect } from 'expo-router'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import StreakCard from '../../components/StreakCard'
 import TodaysGoal from '../../components/TodaysGoal'
@@ -12,12 +13,12 @@ const Home = () => {
   const {firstName} = useUserStore()
   const { getGoalPercent, goalCompletePerecnt } = useStatsStore()
 
-  useEffect(() => {
+  useFocusEffect(() => {
     const callApi = async () => {
       await getGoalPercent()
     }
     callApi()
-  }, [])
+  })
 
   console.log(Math.round(goalCompletePerecnt))
 
