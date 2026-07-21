@@ -1,11 +1,22 @@
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import { useEffect } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { Lucide } from '@react-native-vector-icons/lucide'
 import MainStatCard from '@/components/MainStatCard'
 import StatCard from '@/components/StatCard'
 import WeekLineChart from '@/components/WeekLineChart'
+import { useStatsStore } from '../../store/stats.store'
 
 const Stats = () => {
+  const { getWeekTotalTime, getMonthTotalTime } = useStatsStore()
+
+  useEffect(() => {
+    const callApi = async () => {
+      await getWeekTotalTime()
+      await getMonthTotalTime()
+    }
+    callApi()
+  }, [])
+  
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.headingContainer}>
