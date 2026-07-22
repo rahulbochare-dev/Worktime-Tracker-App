@@ -1,4 +1,4 @@
-import { and, eq, gte, lt, sql } from "drizzle-orm";
+import { and, desc, eq, gte, lt, sql } from "drizzle-orm";
 import { db } from "../index";
 import { sessions } from "../schema";
 import { getGoalQuery } from "./settings.queries";
@@ -83,4 +83,54 @@ export const todayGoalPercentComplete = async () => {
   const goalCompletePercent = Math.min((todayTotalTime / dailyGoal) * 100, 100)  
 
   return goalCompletePercent
+}
+
+export const getCurrentStreak = async () => {
+  const allSessions = await db.select({
+    startTime: sessions.startTime,
+  })
+  .from(sessions)
+  .orderBy(desc(sessions.startTime))
+
+  const uniqueDates = [
+    ...new Set(
+      allSessions.map((session) => {
+        const date = new Date(session.startTime)
+        date.setHours(0, 0, 0, 0)
+        return date.getTime()
+      })
+    )
+  ]
+
+  if(uniqueDates.length === 0) return 0
+
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+
+  const yesterday = new Date(today)
+  yesterday.setDate(yesterday.getDate() - 1)
+
+  if(
+    uniqueDates[0] !== today.getTime() &&
+    uniqueDates[0] !== yesterday.getTime()
+  ){
+    return 0
+  }
+
+  let streak = 1
+
+  for (let i = 1; i < uniqueDates.length; i++){
+    const previous = uniqueDates[i - 1]
+    const current = uniqueDates[i]
+
+    const diffDays = (previous - current) / (1000 * 60 * 60 * 24)
+
+    if(diffDays === 1){
+      streak++
+    } else {
+      break
+    }
+  }
+
+  return streak
 }
