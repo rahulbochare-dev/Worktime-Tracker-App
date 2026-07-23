@@ -15,7 +15,7 @@ const MainStatCard = ({ icon, iconColor, title, mainNumber, mainNumberText, tip 
     <View style={styles.container}>
       <View style={styles.headingContainer}>
         <Text style={styles.statHeading}>{title || "N/A"}</Text>
-        <Lucide name={icon || "file-question-mark"} size={24} color={iconColor || "white"}/>
+        <Lucide name={icon || "file-question-mark"} size={20} color={iconColor || "white"}/>
       </View>
       <Text style={styles.goalNumberText}>{mainNumber || "N/A"} <Text style={styles.goalNumberDaysText}>{mainNumberText}</Text></Text>
       <View style={styles.tipContainer}>
@@ -39,19 +39,19 @@ const styles = StyleSheet.create({
     paddingRight: 8
   },
   statHeading: {
-    fontSize: 16,
+    fontSize: 14,
     fontFamily: "GeistMedium",
     color: "white",
     marginTop: 8
   },
   goalNumberText: {
-    fontSize: 36,
+    fontSize: 32,
     marginTop: 6,
     fontFamily: "GeistMedium",
     color: "white",
   },
   goalNumberDaysText: {
-    fontSize: 16,
+    fontSize: 14,
     fontFamily: "GeistMedium",
     color: "white",
   },
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 32,
     flexDirection: "row-reverse",
-    alignItems: "flex-end",
+    alignItems: "center",
     justifyContent: "flex-end",
     marginTop: 3,
     gap: 4,
