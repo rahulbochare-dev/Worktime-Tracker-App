@@ -76,6 +76,15 @@ export const getTodaySessionsTime = async () => {
   )
 }
 
+export const getAllSessionsTime = async () => {
+  const allSessions = await db.select().from(sessions)
+
+  return allSessions.reduce(
+    (total, session) => total + session.totalTime,
+    0
+  )
+}
+
 export const todayGoalPercentComplete = async () => {
   const dailyGoal = await getGoalQuery()
   const todayTotalTime = await getTodaySessionsTime()
