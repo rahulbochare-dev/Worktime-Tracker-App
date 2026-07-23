@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { useFocusEffect } from 'expo-router'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -6,21 +6,21 @@ import StreakCard from '../../components/StreakCard'
 import TodaysGoal from '../../components/TodaysGoal'
 import { useUserStore } from '@/store/user.store'
 import { useStatsStore } from '@/store/stats.store'
+import { getCurrentStreak } from '../../db/queries/stats.queries'
 
 const Home = () => {
-  const [modalVisible, setModalVisible] = useState(false)
-
-  const {firstName} = useUserStore()
+  const { firstName } = useUserStore()
   const { getGoalPercent, goalCompletePerecnt } = useStatsStore()
 
-  useFocusEffect(() => {
-    const callApi = async () => {
-      await getGoalPercent()
-    }
-    callApi()
-  })
+  useFocusEffect(
+    useCallback(() => {
+      const callApi = async () => {
+        await getGoalPercent();
+      }
 
-  console.log(Math.round(goalCompletePerecnt))
+      callApi();
+    }, [])
+  )
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -31,7 +31,7 @@ const Home = () => {
         <Text style={styles.todaysSummaryText}>Today's Summary</Text>
       </View>
       <StreakCard/>
-      <TodaysGoal progress={Math.round(goalCompletePerecnt)}/>
+      <TodaysGoal progress={Math.round(goalCompletePerecnt)} />
     </SafeAreaView>
   )
 }

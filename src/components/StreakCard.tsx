@@ -1,13 +1,28 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import StreakDay from '../components/StreakDay'
+import { getCurrentStreak } from '@/db/queries/stats.queries'
+import { useFocusEffect } from 'expo-router'
+import { useState, useCallback } from 'react'
 
 const StreakCard = () => {
+    const [streak, setStreak] = useState(null)  
+
+  useFocusEffect(
+    useCallback(() => {
+      const callApi = async () => {
+        const response = await getCurrentStreak()
+        setStreak(response)
+      }
+      callApi();
+    }, [])
+  );
+
     return (
         <View style={styles.streakCardContainer}>
             <View style={styles.streakFlex}>
                 <View style={styles.streakCardNumberContainer}>
                     <Text style={styles.currentStreakText}>Current Streak</Text>
-                    <Text style={styles.currentStreakNumberText}>23 <Text style={styles.currentStreakNumberDaysText}>Days</Text></Text>
+                    <Text style={styles.currentStreakNumberText}>{streak || "N/A"} <Text style={styles.currentStreakNumberDaysText}>Days</Text></Text>
                 </View>
                 <View style={styles.streakCardIconContainer}>
                 <Text style={styles.streakCardIcon}>🔥</Text>
