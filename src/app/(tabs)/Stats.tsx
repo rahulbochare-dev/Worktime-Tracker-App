@@ -7,22 +7,27 @@ import StatCard from '@/components/StatCard'
 import WeekLineChart from '@/components/WeekLineChart'
 import { useStatsStore } from '../../store/stats.store'
 import { getCurrentStreak } from '@/db/queries/stats.queries'
+import { formatSessionTime } from '../../utils/formatSessionTime'
 
 const Stats = () => {
-  const { getWeekTotalTime, getMonthTotalTime } = useStatsStore()
+  const { getWeekTotalTime, getMonthTotalTime, getAllSessionsTime, allSessionsTime } = useStatsStore()
   const [streak, setStreak] = useState(null)
+  const formattedAllSessionTime = formatSessionTime(allSessionsTime)
 
   useFocusEffect(() => {
     const callApi = async () => {
       await getWeekTotalTime()
-      const response = await getMonthTotalTime()
+      await getMonthTotalTime()
+      const response = await getAllSessionsTime()
       const streakResponse = await getCurrentStreak()
       setStreak(streakResponse)
-
     }
     callApi()
   })
 
+  console.log(formattedAllSessionTime);
+  
+  
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.headingContainer}>
@@ -32,7 +37,12 @@ const Stats = () => {
         </View>
       </View>
       <ScrollView>
-        <MainStatCard />
+        <MainStatCard
+          title='Worked so far'
+          time={formattedAllSessionTime}
+          insight={`Worked ${formattedAllSessionTime} until now.`}
+          icon='goal'
+          iconColor='#0090FF'/>
         <View style={styles.cardContainer}>
           <StatCard
             title={"Streak"}

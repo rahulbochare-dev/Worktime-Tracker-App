@@ -1,7 +1,8 @@
 import { create } from 'zustand'
-import { getCurrentWeekSessionsTime, getCurrentMonthSessionsTime, todayGoalPercentComplete } from '../db/queries/stats.queries'
+import { getCurrentWeekSessionsTime, getCurrentMonthSessionsTime, todayGoalPercentComplete, getAllSessionsTime } from '../db/queries/stats.queries'
 
 export const useStatsStore = create((set) => ({
+  allSessionsTime: null,
   weekTotalTime: null,
   monthTotalTime: null,
   goalCompletePerecnt: null,
@@ -22,6 +23,16 @@ export const useStatsStore = create((set) => ({
     try {
       const response = await getCurrentMonthSessionsTime()
       set({monthTotalTime: response})
+      return response
+    } catch (error) {
+      set({ error: error })
+    }
+  },
+
+  getAllSessionsTime: async () => {
+    try {
+      const response = await getAllSessionsTime()
+      set({allSessionsTime: response})
       return response
     } catch (error) {
       set({ error: error })

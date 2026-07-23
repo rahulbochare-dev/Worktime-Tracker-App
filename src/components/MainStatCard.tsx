@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     marginTop: 8
   },
   goalNumberText: {
-    fontSize: 36,
+    fontSize: 32,
     marginTop: 6,
     fontFamily: "GeistMedium",
     color: "white",
